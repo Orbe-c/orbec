@@ -425,7 +425,7 @@
         function onYouTubeIframeAPIReady() {
             isYouTubeReady = true;
             // Crear reproductores para cada iframe
-            $('iframe[id^="player-"]').each(function(index) {
+            $('#carrete iframe[id^="player-"]').each(function(index) {
                 var iframeID = $(this).attr('id');
                 players[index] = new YT.Player(iframeID, {
                     events: {
