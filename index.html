@@ -27,8 +27,8 @@
         }
         
         body {
-            background-color: #000; /* Negro */
-            color: #ffffff; /* Blanco */
+            background-color: #000;
+            color: #ffffff;
             font-family: 'Courier New', Courier, monospace;
             margin: 0;
             padding: 0;
@@ -36,7 +36,7 @@
 
         /* Estillo secciones */
         header a.section-link {
-            color: #ffffff; /* Letra blanca */
+            color: #ffffff;
             margin: 0 20px;
             font-size: 18px;
             text-decoration: none;
@@ -44,7 +44,7 @@
         }
 
         header {
-            background-color: #000; /* negro */
+            background-color: #000;
             padding: 20px;
             text-align: center;
         }
@@ -62,7 +62,7 @@
         }
 
         header a {
-            color: #ffffff; /* Letra blanca */
+            color: #ffffff;
             margin: 0 20px;
             font-size: 18px;
             text-decoration: none;
@@ -74,10 +74,10 @@
             position: fixed;
             width: 100%;
             height: 100%;
-            background-color: #000; /* Fondo negro */
+            background-color: #000;
             top: 0;
             left: 0;
-            z-index: 9999; /* Asegura que esté por encima de todo */
+            z-index: 9999;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -94,7 +94,7 @@
         }
 
         #loader-content img {
-            width: 150px; /* Tamaño de la imagen, ajusta según necesites */
+            width: 150px;
             height: auto;
         }
 
@@ -123,8 +123,6 @@
             animation: powerOn 2.5s ease-out forwards;
         }
 
-        /* Termina pre Loader*/
-
         #carrete {
             width: 80%;
             margin: 0 auto;
@@ -151,20 +149,44 @@
         }
    
         #carrete-servicios {
-            width: 100%;
+            width: 100vw;
+            height: 100vh;
             margin: 0;
+            margin-left: calc(-50vw + 50%);
             text-align: center;
             overflow: hidden;
+            position: relative;
+        }
+
+        #carrete-servicios .slick-slide {
+            display: flex !important;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            height: 100vh;
         }
 
         #carrete-servicios img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s ease-out;
         }
 
-        .slick-slide {
-            position: relative;
+        #carrete-servicios .slick-slide.slick-active img {
+            animation: zoomIn 0.8s ease-out forwards;
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(1.1);
+                opacity: 0.8;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
 
         .servicio-texto {
@@ -174,10 +196,10 @@
             transform: translate(-50%, -50%);
             color: #ffffff; 
             font-size: 40px; 
-            font-weight: bold; /* Texto en negrita */
+            font-weight: bold;
             text-align: center;
             width: 80%; 
-            z-index: 1; /*  texto esté sobre la imagen */
+            z-index: 1;
             text-shadow: 2px 2px 4px #000; 
         }
 
@@ -196,7 +218,7 @@
         }
 
         #contacto {
-            background-color: #000000; /* Negro */
+            background-color: #000000;
             padding: 20px;
             text-align: center;
             color: #fff;
@@ -212,7 +234,7 @@
         .carousel-prev,
         .carousel-next {
             font-size: 30px;
-            color: #fff; /* Color de las flechas */
+            color: #fff;
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
@@ -226,6 +248,55 @@
 
         .carousel-next {
             right: 10px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.2em;
+            }
+
+            header a {
+                display: block;
+                margin: 10px 0;
+            }
+
+            #carrete {
+                width: 95%;
+            }
+
+            .slick-slide iframe {
+                height: 250px;
+            }
+
+            #carrete-servicios,
+            #carrete-servicios .slick-slide,
+            #carrete-servicios img {
+                height: 100vh;
+            }
+
+            .servicio-texto {
+                font-size: 32px;
+            }
+
+            .carousel-prev,
+            .carousel-next {
+                font-size: 20px;
+                padding: 5px 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #carrete-servicios,
+            #carrete-servicios .slick-slide,
+            #carrete-servicios img {
+                height: 100vh;
+            }
+
+            .servicio-texto {
+                font-size: 26px;
+                width: 90%;
+            }
         }
     </style>
 </head>
@@ -244,7 +315,6 @@
         <h1>ORBE C Films</h1>
 
         <div>
-            <!-- Actualiza los enlaces para redirigir a las secciones -->
             <a href="quienes-somos.html" class="section-link">Quiénes somos</a>
             <a href="OrbeCBlog.html" class="section-link">Orbe-C BLOG</a>
         </div>
@@ -283,8 +353,6 @@
     </div>
 
     <div id="carrete-servicios" class="carousel">
-        <div class="carousel-prev">&#10094;</div>
-        <div class="carousel-next">&#10095;</div>
         <div>
             <img src="imagenes/EdicionCap.jpg" alt="Proyectos Recientes">
             <div class="servicio-texto">Edición de video</div>
@@ -303,7 +371,7 @@
         </div>
     </div>
 
-
+    <div style="background-color: #ffffff; height: 60px;"></div>
 
     <div id="redes-sociales">
         <a href="https://www.instagram.com/ronilio_/" target="_blank">Instagram</a>
@@ -379,6 +447,7 @@
                 autoplay: true,
                 autoplaySpeed: 5000,
                 dots: true,
+                arrows: true,
                 prevArrow: '<div class="carousel-prev">&#10094;</div>',
                 nextArrow: '<div class="carousel-next">&#10095;</div>',
                 appendDots: $('#nuestros-servicios')
@@ -403,6 +472,31 @@
                     }
                 }
             });
+        });
+
+        // Efecto de snap al carrusel cuando haces scroll
+        let isSnapping = false;
+        window.addEventListener('scroll', function() {
+            if (isSnapping) return;
+            
+            const carrusel = document.getElementById('carrete-servicios');
+            const rect = carrusel.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+            
+            // Solo se ancla si está muy cerca del centro (rango del 15%)
+            const distanceFromCenter = Math.abs(rect.top - (windowHeight * 0.1));
+            const isNearCenter = distanceFromCenter < windowHeight * 0.15;
+            
+            if (isNearCenter && rect.top < windowHeight * 0.15 && rect.top > -windowHeight * 0.15) {
+                isSnapping = true;
+                carrusel.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'start' 
+                });
+                setTimeout(() => {
+                    isSnapping = false;
+                }, 1000);
+            }
         });
     </script>
 </body>
