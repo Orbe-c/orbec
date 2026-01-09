@@ -47,9 +47,6 @@
             background-color: #000;
             padding: 30px 20px;
             text-align: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
             box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
         }
 
@@ -555,25 +552,28 @@
         // Esta función se llama automáticamente cuando la API de YouTube está lista
         function onYouTubeIframeAPIReady() {
             isYouTubeReady = true;
+            console.log('YouTube API lista');
             // Crear reproductores para cada iframe
-            $('#carrete .video-wrapper iframe[id^="player-"]').each(function(index) {
-                var iframeID = $(this).attr('id');
-                players[index] = new YT.Player(iframeID, {
+            for (var i = 0; i <= 5; i++) {
+                players[i] = new YT.Player('player-' + i, {
                     events: {
                         'onStateChange': onPlayerStateChange
                     }
                 });
-            });
+            }
+            console.log('Reproductores creados:', players.length);
         }
 
         function onPlayerStateChange(event) {
             // Si un video empieza a reproducirse, pausar el carrusel
             if (event.data == YT.PlayerState.PLAYING) {
                 $('#carrete').slick('slickPause');
+                console.log('Video reproduciendo, carrusel pausado');
             } 
             // Si el video termina o se pausa, reanudar el carrusel
             else if (event.data == YT.PlayerState.ENDED || event.data == YT.PlayerState.PAUSED) {
                 $('#carrete').slick('slickPlay');
+                console.log('Video pausado/terminado, carrusel reanudado');
             }
         }
 
@@ -614,28 +614,18 @@
 
             // Cuando el carrusel cambia de slide, pausar el video actual
             carrusel.on('beforeChange', function (event, slick, currentSlide, nextSlide) {
-                // Pausar el video del slide actual antes de cambiar
+                console.log('Cambiando del slide ' + currentSlide + ' al ' + nextSlide);
+                // Pausar el video del slide actual
                 if (isYouTubeReady && players[currentSlide]) {
                     try {
-                        players[currentSlide].pauseVideo();
-                    } catch(e) {
-                        console.log('No se pudo pausar el video ' + currentSlide);
-                    }
-                }
-            });
-
-            // Pausar todos los demás videos cuando cambias manualmente
-            carrusel.on('afterChange', function (event, slick, currentSlide) {
-                if (isYouTubeReady) {
-                    players.forEach(function(player, index) {
-                        if (index !== currentSlide && player && player.pauseVideo) {
-                            try {
-                                player.pauseVideo();
-                            } catch(e) {
-                                console.log('No se pudo pausar el video ' + index);
-                            }
+                        var playerState = players[currentSlide].getPlayerState();
+                        if (playerState === YT.PlayerState.PLAYING) {
+                            players[currentSlide].pauseVideo();
+                            console.log('Video ' + currentSlide + ' pausado');
                         }
-                    });
+                    } catch(e) {
+                        console.log('Error al pausar video ' + currentSlide + ':', e);
+                    }
                 }
             });
         });
