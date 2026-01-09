@@ -1,43 +1,62 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ORBE C Films - Producción audiovisual profesional en El Salvador">
     <title>ORBE C Films</title>
 
-    <!-- Slick Carousel -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
-
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
-
-    <!-- JS -->
+    <!-- Vincula las hojas de estilo directamente desde CDN -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet"/>
+    
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <script src="https://www.youtube.com/iframe_api"></script>
 
+    <!-- Estilo CSS -->
     <style>
-        body {
-            margin: 0;
-            background-color: #000;
-            color: #fff;
-            font-family: 'Courier New', Courier, monospace;
-        }
-
-        h1, h2, .servicio-texto, footer p {
+        /* tipografía Bebas Neue */
+        body,
+        #nuestros-proyectos h2,
+        #nuestros-servicios h2,
+        .servicio-texto,
+        footer p {
             font-family: 'Bebas Neue', sans-serif;
         }
 
-        /* PRELOADER */
+        body {
+            background-color: #000; /* Negro */
+            color: #ffffff; /* Blanco */
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* PRELOADER con animación mejorada */
         #preloader {
             position: fixed;
-            inset: 0;
-            background: #000;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            top: 0;
+            left: 0;
+            z-index: 9999;
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 9999;
+            opacity: 1;
             transition: opacity 0.5s ease;
+        }
+
+        #preloader.fade-out {
+            opacity: 0;
+        }
+
+        #loader-content {
+            text-align: center;
         }
 
         #loader-content img {
@@ -45,6 +64,7 @@
             height: auto;
         }
 
+        /* Animación estilo "encendido de TV" */
         @keyframes powerOn {
             0% {
                 opacity: 0;
@@ -68,151 +88,350 @@
         .power-on {
             animation: powerOn 2.5s ease-out forwards;
         }
+        /* Termina pre Loader*/
 
-        /* HEADER */
+        /* Header */
         header {
-            background: #000;
+            background-color: #000;
             padding: 20px;
             text-align: center;
         }
 
-        header img {
+        #logo-container img {
             width: 100px;
+            height: auto;
+        }
+
+        header h1 {
+            margin: 10px 0;
+            font-size: 1.5em;
         }
 
         header a {
-            color: #fff;
-            margin: 0 15px;
+            color: #ffffff;
+            margin: 0 20px;
+            font-size: 18px;
             text-decoration: none;
+            font-family: 'Courier New', Courier, monospace;
+            transition: opacity 0.3s ease;
         }
 
-        /* SECTIONS */
+        header a:hover {
+            opacity: 0.7;
+        }
+
+        /* Secciones */
         #nuestros-proyectos,
         #nuestros-servicios {
             text-align: center;
-            margin: 40px 0 20px;
+            margin-top: 20px;
+            font-size: 24px;
+            color: #ffffff;
         }
 
+        /* Carrusel de videos */
         #carrete {
             width: 80%;
-            margin: auto;
+            margin: 0 auto;
+            position: relative;
         }
 
-        iframe {
+        .slick-slide {
+            text-align: center;
+            color: #999;
+        }
+
+        .slick-slide iframe {
             width: 100%;
             height: 400px;
         }
 
+        /* Carrusel de servicios */
+        #carrete-servicios {
+            width: 100%;
+            margin: 0;
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        #carrete-servicios .slick-slide {
+            position: relative;
+        }
+
         #carrete-servicios img {
             width: 100%;
+            height: auto;
             border-radius: 8px;
+            display: block;
         }
 
         .servicio-texto {
             position: absolute;
-            inset: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #ffffff;
             font-size: 40px;
+            font-weight: bold;
+            text-align: center;
+            width: 80%;
+            z-index: 1;
             text-shadow: 2px 2px 4px #000;
         }
 
-        .slick-slide {
-            position: relative;
+        /* Flechas del carrusel */
+        .carousel-prev,
+        .carousel-next {
+            font-size: 30px;
+            color: #fff;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            z-index: 2;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px 15px;
+            border-radius: 5px;
+            user-select: none;
         }
 
-        #redes-sociales,
-        footer {
-            background: #333;
-            text-align: center;
+        .carousel-prev:hover,
+        .carousel-next:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .carousel-prev {
+            left: 10px;
+        }
+
+        .carousel-next {
+            right: 10px;
+        }
+
+        /* Redes sociales */
+        #redes-sociales {
+            background-color: #333333;
             padding: 20px;
+            text-align: center;
+            color: #fff;
         }
 
+        #redes-sociales a {
+            color: #fff;
+            margin: 0 10px;
+            font-size: 20px;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        #redes-sociales a:hover {
+            opacity: 0.7;
+        }
+
+        /* Contacto */
         #contacto {
-            text-align: center;
+            background-color: #000000;
             padding: 40px 20px;
+            text-align: center;
+            color: #fff;
+        }
+
+        #contacto h2 {
+            margin: 20px 0;
+        }
+
+        #contacto p {
+            margin: 10px 0;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333333;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.2em;
+            }
+
+            header a {
+                display: block;
+                margin: 10px 0;
+            }
+
+            #carrete {
+                width: 95%;
+            }
+
+            .slick-slide iframe {
+                height: 250px;
+            }
+
+            .servicio-texto {
+                font-size: 28px;
+            }
         }
     </style>
 </head>
 
 <body>
-
-<!-- PRELOADER -->
-<div id="preloader">
-    <div id="loader-content">
-        <img src="imagenes/logo.png" alt="Cargando" class="power-on">
+    <!-- PRELOADER -->
+    <div id="preloader">
+        <div id="loader-content">
+            <img src="imagenes/logo.png" alt="Cargando ORBE C Films" class="power-on">
+        </div>
     </div>
-</div>
 
-<header>
-    <img src="imagenes/logo.png" alt="ORBE C Films">
-    <h1>ORBE C Films</h1>
-    <a href="quienes-somos.html">Quiénes somos</a>
-    <a href="OrbeCBlog.html">Orbe-C Blog</a>
-</header>
+    <header>
+        <div id="logo-container">
+           <img src="imagenes/logo.png" alt="Logo ORBE C Films">
+        </div>
+        <h1>ORBE C Films</h1>
 
-<section id="nuestros-proyectos">
-    <h2>Nuestros Proyectos</h2>
-</section>
+        <div>
+            <a href="quienes-somos.html" class="section-link">Quiénes somos</a>
+            <a href="OrbeCBlog.html" class="section-link">Orbe-C BLOG</a>
+        </div>
+    </header>
 
-<div id="carrete">
-    <div><iframe src="https://www.youtube.com/embed/2Pa6RBmFt90" allowfullscreen></iframe></div>
-    <div><iframe src="https://www.youtube.com/embed/UVAwpWqnXYo" allowfullscreen></iframe></div>
-    <div><iframe src="https://www.youtube.com/embed/p9cOB6H7UZQ" allowfullscreen></iframe></div>
-    <div><iframe src="https://www.youtube.com/embed/ykCLdz4IZvY" allowfullscreen></iframe></div>
-    <div><iframe src="https://www.youtube.com/embed/i1g7NzY2TbE" allowfullscreen></iframe></div>
-</div>
-
-<section id="nuestros-servicios">
-    <h2>Nuestros Servicios</h2>
-</section>
-
-<div id="carrete-servicios">
-    <div>
-        <img src="imagenes/EdicionCap.jpg">
-        <div class="servicio-texto">Edición de video</div>
+    <div id="nuestros-proyectos">
+        <h2>Nuestros Proyectos</h2>
     </div>
-    <div>
-        <img src="imagenes/rs.jpg">
-        <div class="servicio-texto">Contenido para redes</div>
+
+    <div id="carrete" class="carousel">
+        <div>
+            <iframe src="https://www.youtube.com/embed/2Pa6RBmFt90" frameborder="0" allowfullscreen title="Proyecto 1"></iframe>
+        </div>
+        <div>
+            <iframe src="https://www.youtube.com/embed/UVAwpWqnXYo" frameborder="0" allowfullscreen title="Proyecto 2"></iframe>
+        </div>
+        <div>
+            <iframe src="https://www.youtube.com/embed/p9cOB6H7UZQ" frameborder="0" allowfullscreen title="Proyecto 3"></iframe>
+        </div>
+        <div>
+            <iframe src="https://www.youtube.com/embed/ykCLdz4IZvY" frameborder="0" allowfullscreen title="Proyecto 4"></iframe>
+        </div>
+        <div>
+            <iframe src="https://www.youtube.com/embed/i1g7NzY2TbE" frameborder="0" allowfullscreen title="Proyecto 5"></iframe>
+        </div>
+        <div>
+            <iframe src="https://www.youtube.com/embed/G-yuzYw_shE" frameborder="0" allowfullscreen title="Proyecto 6"></iframe>
+        </div>
     </div>
-    <div>
-        <img src="imagenes/FtProducto.jpg">
-        <div class="servicio-texto">Fotografía de producto</div>
+
+    <div id="nuestros-servicios">
+        <h2>Nuestros Servicios</h2>
     </div>
-</div>
 
-<div id="redes-sociales">
-    <a href="https://www.instagram.com/ronilio_" target="_blank">Instagram</a>
-</div>
+    <div id="carrete-servicios" class="carousel">
+        <div>
+            <img src="imagenes/EdicionCap.jpg" alt="Edición de video">
+            <div class="servicio-texto">Edición de video</div>
+        </div>
+        <div>
+            <img src="imagenes/rs.jpg" alt="Contenido para redes sociales">
+            <div class="servicio-texto">Contenido para redes sociales</div>
+        </div>
+        <div>
+            <img src="imagenes/FtProducto.jpg" alt="Fotografía de producto">
+            <div class="servicio-texto">Fotografía de producto</div>
+        </div>
+        <div>
+            <img src="imagenes/mauricio.jpg" alt="Fotografía de retrato">
+            <div class="servicio-texto">Fotografía de retrato</div>
+        </div>
+    </div>
 
-<section id="contacto">
-    <p>HAGAMOS REALIDAD TUS HISTORIAS</p>
-    <p>Email: rtiz.ronny@gmail.com</p>
-    <p>Tel: 7029-5222</p>
-</section>
+    <div id="redes-sociales">
+        <a href="https://www.instagram.com/ronilio_/" target="_blank" rel="noopener noreferrer">Instagram</a>
+    </div>
 
-<footer>
-    <p>© 2026 ORBE C Films</p>
-</footer>
+    <section id="contacto">
+        <p style="font-size: 1.5em; font-weight: bold;">HAGAMOS REALIDAD TUS HISTORIAS</p>
+        <h2>Contacto</h2>
+        <p>Ponte en contacto con nosotros para más información:</p>
+        <p>Email: <a href="mailto:rtiz.ronny@gmail.com" style="color: #fff;">rtiz.ronny@gmail.com</a></p>
+        <p>Teléfono: <a href="tel:+50370295222" style="color: #fff;">7029-5222</a></p>
+    </section>
 
-<script>
-    window.addEventListener('load', () => {
-        const preloader = document.getElementById('preloader');
-        preloader.style.opacity = '0';
-        setTimeout(() => preloader.style.display = 'none', 500);
-    });
+    <footer>
+        <p>&copy; 2026 ORBE C Films</p>
+    </footer>
 
-    $(document).ready(function(){
-        $('#carrete, #carrete-servicios').slick({
-            autoplay: true,
-            autoplaySpeed: 5000,
-            dots: true,
-            arrows: false
+    <script>
+        // Preloader con animación mejorada
+        window.addEventListener('load', function () {
+            var preloader = document.getElementById('preloader');
+            preloader.classList.add('fade-out');
+            setTimeout(function() {
+                preloader.style.display = 'none';
+            }, 500);
         });
-    });
-</script>
 
+        $(document).ready(function () {
+            // Carrusel de proyectos
+            var carrusel = $('#carrete').slick({
+                infinite: true,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 6000,
+                prevArrow: '<div class="carousel-prev">&#10094;</div>',
+                nextArrow: '<div class="carousel-next">&#10095;</div>',
+                pauseOnHover: true
+            });
+
+            // Carrusel de servicios
+            $('#carrete-servicios').slick({
+                infinite: true,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 5000,
+                dots: true,
+                prevArrow: '<div class="carousel-prev">&#10094;</div>',
+                nextArrow: '<div class="carousel-next">&#10095;</div>',
+                pauseOnHover: true
+            });
+
+            // Pausar carrusel cuando la pestaña no está visible
+            document.addEventListener("visibilitychange", function () {
+                if (document.hidden) {
+                    carrusel.slick('slickPause');
+                } else {
+                    carrusel.slick('slickPlay');
+                }
+            });
+        });
+
+        // Funcionalidad de YouTube API (opcional para pausar videos)
+        var players = [];
+        
+        function onYouTubeIframeAPIReady() {
+            $('iframe').each(function(index) {
+                var frameId = 'player-' + index;
+                $(this).attr('id', frameId);
+                
+                players[index] = new YT.Player(frameId, {
+                    events: {
+                        'onStateChange': onPlayerStateChange
+                    }
+                });
+            });
+        }
+
+        function onPlayerStateChange(event) {
+            if (event.data == YT.PlayerState.PLAYING) {
+                $('#carrete').slick('slickPause');
+            } else if (event.data == YT.PlayerState.ENDED || event.data == YT.PlayerState.PAUSED) {
+                $('#carrete').slick('slickPlay');
+            }
+        }
+    </script>
 </body>
-</html>
+
+</html>s
