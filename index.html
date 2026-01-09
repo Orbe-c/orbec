@@ -136,23 +136,26 @@
 
         /* FIX: Carrusel con padding para mejor visualización */
         #carrete {
-            width: 80%;
-            max-width: 900px;
+            width: 90%;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 40px 0;
+            background-color: #000;
         }
 
         .slick-slide {
             text-align: center;
             color: #999;
+            background-color: #000;
         }
 
-        /* FIX: Mantener aspect ratio 16:9 de YouTube */
+        /* FIX: Mantener aspect ratio 16:9 de YouTube sin espacios negros */
         .slick-slide iframe {
             width: 100%;
             aspect-ratio: 16/9;
             max-width: 100%;
-            color: #999;
+            display: block;
+            margin: 0 auto;
         }
 
         #nuestros-proyectos,
@@ -482,6 +485,7 @@
 
             // Cuando el carrusel cambia de slide, pausar el video anterior
             carrusel.on('beforeChange', function (event, slick, currentSlide, nextSlide) {
+                // Pausar el video del slide actual antes de cambiar
                 if (isYouTubeReady && players[currentSlide]) {
                     try {
                         players[currentSlide].pauseVideo();
@@ -489,6 +493,20 @@
                         console.log('No se pudo pausar el video');
                     }
                 }
+            });
+
+            // Cuando el carrusel termina de cambiar, pausar cualquier video que esté sonando
+            carrusel.on('afterChange', function (event, slick, currentSlide) {
+                // Pausar todos los videos excepto el actual
+                players.forEach(function(player, index) {
+                    if (index !== currentSlide && player && isYouTubeReady) {
+                        try {
+                            player.pauseVideo();
+                        } catch(e) {
+                            console.log('No se pudo pausar el video ' + index);
+                        }
+                    }
+                });
             });
         });
 
