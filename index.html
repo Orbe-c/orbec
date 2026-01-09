@@ -137,6 +137,7 @@
         /* FIX: Carrusel con padding para mejor visualización */
         #carrete {
             width: 80%;
+            max-width: 900px;
             margin: 0 auto;
             padding: 40px 0;
         }
@@ -146,10 +147,10 @@
             color: #999;
         }
 
-        /* FIX: Altura mejorada para los videos */
+        /* FIX: Mantener aspect ratio 16:9 de YouTube */
         .slick-slide iframe {
             width: 100%;
-            height: 400px;
+            aspect-ratio: 16/9;
             max-width: 100%;
             color: #999;
         }
