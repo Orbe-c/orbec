@@ -464,32 +464,32 @@
         <div id="carrete" class="carousel">
             <div>
                 <div class="video-wrapper">
-                    <iframe id="player-0" src="https://www.youtube.com/embed/2Pa6RBmFt90?enablejsapi=1" allowfullscreen></iframe>
+                    <iframe id="player-0" src="https://www.youtube.com/embed/2Pa6RBmFt90?enablejsapi=1" frameborder="0" allowfullscreen></iframe>
                 </div>
             </div>
             <div>
                 <div class="video-wrapper">
-                    <iframe id="player-1" src="https://www.youtube.com/embed/UVAwpWqnXYo?enablejsapi=1" allowfullscreen></iframe>
+                    <iframe id="player-1" src="https://www.youtube.com/embed/UVAwpWqnXYo?enablejsapi=1" frameborder="0" allowfullscreen></iframe>
                 </div>
             </div>
             <div>
                 <div class="video-wrapper">
-                    <iframe id="player-2" src="https://www.youtube.com/embed/p9cOB6H7UZQ?enablejsapi=1" allowfullscreen></iframe>
+                    <iframe id="player-2" src="https://www.youtube.com/embed/p9cOB6H7UZQ?enablejsapi=1" frameborder="0" allowfullscreen></iframe>
                 </div>
             </div>
             <div>
                 <div class="video-wrapper">
-                    <iframe id="player-3" src="https://www.youtube.com/embed/ykCLdz4IZvY?enablejsapi=1" allowfullscreen></iframe>
+                    <iframe id="player-3" src="https://www.youtube.com/embed/ykCLdz4IZvY?enablejsapi=1" frameborder="0" allowfullscreen></iframe>
                 </div>
             </div>
             <div>
                 <div class="video-wrapper">
-                    <iframe id="player-4" src="https://www.youtube.com/embed/i1g7NzY2TbE?enablejsapi=1" allowfullscreen></iframe>
+                    <iframe id="player-4" src="https://www.youtube.com/embed/i1g7NzY2TbE?enablejsapi=1" frameborder="0" allowfullscreen></iframe>
                 </div>
             </div>
             <div>
                 <div class="video-wrapper">
-                    <iframe id="player-5" src="https://www.youtube.com/embed/G-yuzYw_shE?enablejsapi=1" allowfullscreen></iframe>
+                    <iframe id="player-5" src="https://www.youtube.com/embed/G-yuzYw_shE?enablejsapi=1" frameborder="0" allowfullscreen></iframe>
                 </div>
             </div>
         </div>
@@ -609,30 +609,14 @@
                 }
             });
 
-            // Cuando el carrusel cambia de slide, pausar el video actual
+            // Cuando el carrusel cambia de slide, pausar el video anterior
             carrusel.on('beforeChange', function (event, slick, currentSlide, nextSlide) {
-                // Pausar el video del slide actual antes de cambiar
                 if (isYouTubeReady && players[currentSlide]) {
                     try {
                         players[currentSlide].pauseVideo();
                     } catch(e) {
                         console.log('No se pudo pausar el video');
                     }
-                }
-            });
-
-            // Pausar todos los demás videos cuando cambias manualmente
-            carrusel.on('afterChange', function (event, slick, currentSlide) {
-                if (isYouTubeReady) {
-                    players.forEach(function(player, index) {
-                        if (index !== currentSlide && player && player.pauseVideo) {
-                            try {
-                                player.pauseVideo();
-                            } catch(e) {
-                                console.log('No se pudo pausar el video ' + index);
-                            }
-                        }
-                    });
                 }
             });
         });
