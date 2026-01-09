@@ -1,16 +1,23 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>ORBE C Films</title>
 
-    <!-- Slick -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <!-- Vincula las hojas de estilo directamente desde CDN -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" />
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet"/>
 
+    <!-- Estilo CSS -->
     <style>
+        /* tipografía Bebas Neue */
         body,
         #nuestros-proyectos h2,
         #nuestros-servicios h2,
@@ -18,35 +25,80 @@
         footer p {
             font-family: 'Bebas Neue', sans-serif;
         }
-
+        
         body {
-            background-color: #0000; /* TRANSPARENTE como antes */
-            color: #ffffff;
+            background-color: #000; /* Negro */
+            color: #ffffff; /* Blanco */
             font-family: 'Courier New', Courier, monospace;
             margin: 0;
             padding: 0;
         }
 
-        /* PRELOADER */
+        /* Estillo secciones */
+        header a.section-link {
+            color: #ffffff; /* Letra blanca */
+            margin: 0 20px;
+            font-size: 18px;
+            text-decoration: none;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        header {
+            background-color: #000; /* negro */
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            max-width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 1.5em;
+        }
+
+        header div {
+            margin-top: 10px;
+        }
+
+        header a {
+            color: #ffffff; /* Letra blanca */
+            margin: 0 20px;
+            font-size: 18px;
+            text-decoration: none;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        /* preloader */
         #preloader {
             position: fixed;
-            inset: 0;
-            background-color: #000;
-            z-index: 9999;
+            width: 100%;
+            height: 100%;
+            background-color: #000; /* Fondo negro */
+            top: 0;
+            left: 0;
+            z-index: 9999; /* Asegura que esté por encima de todo */
             display: flex;
             justify-content: center;
             align-items: center;
-            transition: opacity .5s ease;
+            opacity: 1;
+            transition: opacity 0.5s ease;
         }
 
         #preloader.fade-out {
             opacity: 0;
         }
 
-        #loader-content img {
-            width: 150px;
+        #loader-content {
+            text-align: center;
         }
 
+        #loader-content img {
+            width: 150px; /* Tamaño de la imagen, ajusta según necesites */
+            height: auto;
+        }
+
+        /* Animación estilo "encendido de TV" */
         @keyframes powerOn {
             0% {
                 opacity: 0;
@@ -56,6 +108,9 @@
             40% {
                 opacity: 1;
                 filter: brightness(1.5) blur(2px);
+            }
+            70% {
+                filter: brightness(0.9);
             }
             100% {
                 opacity: 1;
@@ -68,36 +123,44 @@
             animation: powerOn 2.5s ease-out forwards;
         }
 
-        header {
-            background-color: #000;
-            padding: 20px;
-            text-align: center;
-        }
-
-        header h1 {
-            margin: 10px 0;
-            font-size: 1.5em;
-        }
-
-        header a {
-            color: #fff;
-            margin: 0 20px;
-            text-decoration: none;
-        }
+        /* Termina pre Loader*/
 
         #carrete {
             width: 80%;
             margin: 0 auto;
         }
 
-        .slick-slide iframe {
-            width: 100%;
-            height: 400px;
+        .slick-slide {
+            text-align: center;
+            color: #999;
         }
 
+        .slick-slide iframe {
+            width: 100%;
+            color: #999;
+        }
+
+        #nuestros-proyectos,
+        #nuestros-servicios {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 24px;
+            color: #000;
+            background-color: #ffffff;
+            padding: 20px 0;
+        }
+   
         #carrete-servicios {
             width: 100%;
+            margin: 0;
+            text-align: center;
             overflow: hidden;
+        }
+
+        #carrete-servicios img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
         }
 
         .slick-slide {
@@ -109,111 +172,239 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
+            color: #ffffff; 
+            font-size: 40px; 
+            font-weight: bold; /* Texto en negrita */
+            text-align: center;
+            width: 80%; 
+            z-index: 1; /*  texto esté sobre la imagen */
+            text-shadow: 2px 2px 4px #000; 
+        }
+
+        #redes-sociales {
+            background-color: #333333;
+            padding: 20px;
+            text-align: center;
             color: #fff;
-            font-size: 40px;
-            text-shadow: 2px 2px 4px #000;
+        }
+
+        #redes-sociales a {
+            color: #fff;
+            margin: 0 10px;
+            font-size: 20px;
+            text-decoration: none;
         }
 
         #contacto {
-            background-color: #000;
+            background-color: #000000; /* Negro */
+            padding: 20px;
+            text-align: center;
+            color: #fff;
+        }
+
+        footer {
+            background-color: #333333;
             padding: 20px;
             text-align: center;
         }
 
-        footer {
-            background-color: #333;
-            padding: 20px;
-            text-align: center;
+        /* Estilos para las flechas del carrusel */
+        .carousel-prev,
+        .carousel-next {
+            font-size: 30px;
+            color: #fff; /* Color de las flechas */
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        .carousel-prev {
+            left: 10px;
+        }
+
+        .carousel-next {
+            right: 10px;
         }
     </style>
 </head>
 
 <body>
-
-<!-- PRELOADER -->
-<div id="preloader">
-    <div id="loader-content">
-        <img src="imagenes/logo.png" class="power-on" alt="Cargando">
+    <div id="preloader">
+        <div id="loader-content">
+            <img src="imagenes/logo.png" alt="Cargando..." class="power-on">
+        </div>
     </div>
-</div>
 
-<header>
-    <img src="imagenes/logo.png" width="100" alt="Logo">
-    <h1>ORBE C Films</h1>
-    <div>
-        <a href="quienes-somos.html">Quiénes somos</a>
-        <a href="OrbeCBlog.html">Orbe-C BLOG</a>
+    <header>
+        <div id="logo-container">
+           <img src="imagenes/logo.png" alt="Logo">
+        </div>
+        <h1>ORBE C Films</h1>
+
+        <div>
+            <!-- Actualiza los enlaces para redirigir a las secciones -->
+            <a href="quienes-somos.html" class="section-link">Quiénes somos</a>
+            <a href="OrbeCBlog.html" class="section-link">Orbe-C BLOG</a>
+        </div>
+    </header>
+
+   
+    <div id="nuestros-proyectos">
+        <h2>Nuestros Proyectos</h2>
     </div>
-</header>
 
-<div id="nuestros-proyectos">
-    <h2>Nuestros Proyectos</h2>
-</div>
-
-<div id="carrete">
-    <div><iframe src="https://www.youtube.com/embed/2Pa6RBmFt90" allowfullscreen></iframe></div>
-    <div><iframe src="https://www.youtube.com/embed/UVAwpWqnXYo" allowfullscreen></iframe></div>
-    <div><iframe src="https://www.youtube.com/embed/p9cOB6H7UZQ" allowfullscreen></iframe></div>
-    <div><iframe src="https://www.youtube.com/embed/ykCLdz4IZvY" allowfullscreen></iframe></div>
-</div>
-
-<div id="nuestros-servicios">
-    <h2>Nuestros Servicios</h2>
-</div>
-
-<div id="carrete-servicios">
-    <div>
-        <img src="imagenes/EdicionCap.jpg">
-        <div class="servicio-texto">Edición de video</div>
+    <div id="carrete" class="carousel">
+        <div class="carousel-prev">&#10094;</div>
+        <div class="carousel-next">&#10095;</div>
+        <div>
+            <iframe id="player-0" width="560" height="315" src="https://www.youtube.com/embed/2Pa6RBmFt90?enablejsapi=1" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div>
+            <iframe id="player-1" width="560" height="315" src="https://www.youtube.com/embed/UVAwpWqnXYo?enablejsapi=1" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div>
+            <iframe id="player-2" width="560" height="315" src="https://www.youtube.com/embed/p9cOB6H7UZQ?enablejsapi=1" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div>
+            <iframe id="player-3" width="560" height="315" src="https://www.youtube.com/embed/ykCLdz4IZvY?enablejsapi=1" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div>
+            <iframe id="player-4" width="560" height="315" src="https://www.youtube.com/embed/i1g7NzY2TbE?enablejsapi=1" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div>
+            <iframe id="player-5" width="560" height="315" src="https://www.youtube.com/embed/G-yuzYw_shE?enablejsapi=1" frameborder="0" allowfullscreen></iframe>
+        </div>
     </div>
-    <div>
-        <img src="imagenes/rs.jpg">
-        <div class="servicio-texto">Contenido para redes sociales</div>
+
+    <div id="nuestros-servicios">
+        <h2>Nuestros Servicios</h2>
     </div>
-</div>
 
-<section id="contacto">
-    <p>Email: rtiz.ronny@gmail.com</p>
-    <p>Tel: 7029-5222</p>
-</section>
+    <div id="carrete-servicios" class="carousel">
+        <div class="carousel-prev">&#10094;</div>
+        <div class="carousel-next">&#10095;</div>
+        <div>
+            <img src="imagenes/EdicionCap.jpg" alt="Proyectos Recientes">
+            <div class="servicio-texto">Edición de video</div>
+        </div>
+        <div>
+            <img src="imagenes/rs.jpg" alt="Proyectos Recientes">
+            <div class="servicio-texto">Contenido para redes sociales</div>
+        </div>
+        <div>
+            <img src="imagenes/FtProducto.jpg" alt="Proyectos Recientes">
+            <div class="servicio-texto">Fotografía de producto</div>
+        </div>
+        <div>
+            <img src="imagenes/mauricio.jpg">
+            <div class="servicio-texto">Fotografía de retrato</div>
+        </div>
+    </div>
 
-<footer>
-    <p>&copy; ORBE C Films</p>
-</footer>
 
-<!-- JS -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 
-<script>
-    /* PRELOADER — NO se queda pegado */
-    document.addEventListener('DOMContentLoaded', () => {
-        const preloader = document.getElementById('preloader');
-        preloader.classList.add('fade-out');
-        setTimeout(() => preloader.style.display = 'none', 500);
-    });
+    <div id="redes-sociales">
+        <a href="https://www.instagram.com/ronilio_/" target="_blank">Instagram</a>
+    </div>
 
-    $(function () {
-        const carrusel = $('#carrete').slick({
-            autoplay: true,
-            autoplaySpeed: 6000,
-            arrows: true
+    <section id="contacto">
+        <p>HAGAMOS REALIDAD TUS HISTORIAS</p>
+        <h2>Contacto</h2>
+        <p>Ponte en contacto con nosotros para más información:</p>
+        <p>Email: rtiz.ronny@gmail.com</p>
+        <p>Teléfono: 70295222</p>
+    </section>
+
+    <footer>
+        <p>&copy; aaaaaa</p>
+    </footer>
+
+    <script>
+        window.addEventListener('load', function () {
+            var preloader = document.getElementById('preloader');
+            preloader.classList.add('fade-out');
+            setTimeout(function() {
+                preloader.style.display = 'none';
+            }, 500);
         });
+        
+        // Variables para los reproductores de YouTube
+        var players = [];
+        var isYouTubeReady = false;
 
-        $('#carrete-servicios').slick({
-            autoplay: true,
-            autoplaySpeed: 5000,
-            dots: true
+        // Esta función se llama automáticamente cuando la API de YouTube está lista
+        function onYouTubeIframeAPIReady() {
+            isYouTubeReady = true;
+            // Crear reproductores para cada iframe
+            $('iframe[id^="player-"]').each(function(index) {
+                var iframeID = $(this).attr('id');
+                players[index] = new YT.Player(iframeID, {
+                    events: {
+                        'onStateChange': onPlayerStateChange
+                    }
+                });
+            });
+        }
+
+        function onPlayerStateChange(event) {
+            // Si un video empieza a reproducirse, pausar el carrusel
+            if (event.data == YT.PlayerState.PLAYING) {
+                $('#carrete').slick('slickPause');
+            } 
+            // Si el video termina o se pausa, reanudar el carrusel
+            else if (event.data == YT.PlayerState.ENDED || event.data == YT.PlayerState.PAUSED) {
+                $('#carrete').slick('slickPlay');
+            }
+        }
+
+        $(document).ready(function () {
+            // Carrusel de proyectos (videos)
+            var carrusel = $('#carrete').slick({
+                infinite: true,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 6000,
+                prevArrow: '<div class="carousel-prev">&#10094;</div>',
+                nextArrow: '<div class="carousel-next">&#10095;</div>'
+            });
+
+            // Carrusel de servicios
+            $('#carrete-servicios').slick({
+                infinite: true,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 5000,
+                dots: true,
+                prevArrow: '<div class="carousel-prev">&#10094;</div>',
+                nextArrow: '<div class="carousel-next">&#10095;</div>',
+                appendDots: $('#nuestros-servicios')
+            });
+
+            // Pausar el carrusel cuando la pestaña no está visible
+            document.addEventListener("visibilitychange", function () {
+                if (document.hidden) {
+                    carrusel.slick('slickPause');
+                } else {
+                    carrusel.slick('slickPlay');
+                }
+            });
+
+            // Cuando el carrusel cambia de slide, pausar el video anterior
+            carrusel.on('beforeChange', function (event, slick, currentSlide, nextSlide) {
+                if (isYouTubeReady && players[currentSlide]) {
+                    try {
+                        players[currentSlide].pauseVideo();
+                    } catch(e) {
+                        console.log('No se pudo pausar el video');
+                    }
+                }
+            });
         });
-
-        document.addEventListener("visibilitychange", () => {
-            document.hidden
-                ? carrusel.slick('slickPause')
-                : carrusel.slick('slickPlay');
-        });
-    });
-</script>
-
+    </script>
 </body>
-</html>
 
+</html>
