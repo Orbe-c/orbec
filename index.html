@@ -507,12 +507,23 @@
                 }
             });
 
-            // Cuando el carrusel cambia de slide, pausar TODOS los videos
+            // Cuando el carrusel cambia de slide, pausar el video actual
             carrusel.on('beforeChange', function (event, slick, currentSlide, nextSlide) {
-                // Pausar todos los videos
+                // Pausar el video del slide actual antes de cambiar
+                if (isYouTubeReady && players[currentSlide]) {
+                    try {
+                        players[currentSlide].pauseVideo();
+                    } catch(e) {
+                        console.log('No se pudo pausar el video ' + currentSlide);
+                    }
+                }
+            });
+
+            // Pausar todos los demás videos cuando cambias manualmente
+            carrusel.on('afterChange', function (event, slick, currentSlide) {
                 if (isYouTubeReady) {
                     players.forEach(function(player, index) {
-                        if (player && player.pauseVideo) {
+                        if (index !== currentSlide && player && player.pauseVideo) {
                             try {
                                 player.pauseVideo();
                             } catch(e) {
