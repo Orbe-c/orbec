@@ -33,6 +33,10 @@
             margin: 0;
             padding: 0;
         }
+        
+        #preloader {
+    transition: opacity 0.5s ease;
+}
 
         /* Estillo secciones */
         header a.section-link {
@@ -88,27 +92,8 @@
             width: 150px;
             height: 150px;
         }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .rotating {
-            animation: rotate 5s linear infinite;
-        }
-
-
          /* Termina pre Loader*/
 
-/* Rotar el logo */
-        @keyframes rotate Logo {
-            from {
-                transform: rotate(0deg); /* Inicia la rotación desde 0 grados */
-            }
-            to {
-                transform: rotate(360deg); /* Termina la rotación en 360 grados (una vuelta completa) */
-            }
         }
 
         
@@ -215,13 +200,39 @@
         .carousel-next {
             right: 10px;
         }
+/* Animación encendido tipo cine */
+@keyframes powerOn {
+    0% {
+        opacity: 0;
+        filter: brightness(0.2) blur(4px);
+        transform: scale(0.9);
+    }
+    40% {
+        opacity: 1;
+        filter: brightness(1.5) blur(2px);
+    }
+    70% {
+        filter: brightness(0.9) blur(0);
+    }
+    100% {
+        opacity: 1;
+        filter: brightness(1);
+        transform: scale(1);
+    }
+}
+
+.power-on {
+    animation: powerOn 2.5s ease-out forwards;
+}
+
+        
     </style>
 </head>
 
 <body>
     <div id="preloader">
     <div id="loader-content">
-        <img src="imagenes/logo.png" alt="Cargando...">
+        <img src="imagenes/logo.png" alt="Cargando..."> class="power-on">
     </div>
         </div>
 
@@ -336,7 +347,8 @@
     <script>
            window.addEventListener('load', function () {
         var preloader = document.getElementById('preloader');
-        preloader.style.display = 'none'; // Oculta el preloader
+        preloader.style.opacity = '0';
+setTimeout(() => preloader.style.display = 'none', 500); // Oculta el preloader
     });
         
         $(document).ready(function () {
@@ -388,8 +400,11 @@
                 $('#carrete').slick('slickPlay');
             }
         }
+
+        
     </script>
 </body>
 
 </html>
+
 
