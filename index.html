@@ -619,13 +619,9 @@ header a,
             });
 
             // si carrusel cambia, pausar el video anterior
-         carrusel.on('beforeChange', function (event, slick, currentSlide, nextSlide) {
-    if (isYouTubeReady && players[currentSlide]) {
-        try {
-            players[currentSlide].pauseVideo();
-        } catch(e) {
-            console.log('No se pudo pausar el video');
-        }
+carrusel.on('beforeChange', function (event, slick, currentSlide, nextSlide) {
+    if (isYouTubeReady && players[currentSlide] && players[currentSlide].pauseVideo) {
+        players[currentSlide].pauseVideo();
     }
 });
         });
@@ -664,5 +660,6 @@ header a,
 </body>
 
 </html>
+
 
 
