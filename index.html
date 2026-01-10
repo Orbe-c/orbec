@@ -577,10 +577,6 @@ header a,
             if (event.data == YT.PlayerState.PLAYING) {
                 $('#carrete').slick('slickPause');
             } 
-            // Si el video termina o se pausa, reanudar el carrusel
-            else if (event.data == YT.PlayerState.ENDED || event.data == YT.PlayerState.PAUSED) {
-                $('#carrete').slick('slickPlay');
-            }
         }
 
         $(document).ready(function () {
@@ -660,6 +656,7 @@ carrusel.on('beforeChange', function (event, slick, currentSlide, nextSlide) {
 </body>
 
 </html>
+
 
 
 
