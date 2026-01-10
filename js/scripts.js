@@ -28,7 +28,22 @@ function onPlayerStateChange(event) {
     // Si un video empieza a reproducirse, pausar el carrusel
     if (event.data == YT.PlayerState.PLAYING) {
         $('#carrete').slick('slickPause');
-    } 
+    }
+}
+
+// Función para pausar TODOS los videos
+function pauseAllVideos() {
+    if (isYouTubeReady) {
+        for (var i = 0; i < players.length; i++) {
+            if (players[i] && players[i].pauseVideo) {
+                try {
+                    players[i].pauseVideo();
+                } catch(e) {
+                    console.log('No se pudo pausar video ' + i);
+                }
+            }
+        }
+    }
 }
 
 $(document).ready(function () {
@@ -41,6 +56,11 @@ $(document).ready(function () {
         autoplaySpeed: 6000,
         prevArrow: '<div class="carousel-prev">&#10094;</div>',
         nextArrow: '<div class="carousel-next">&#10095;</div>'
+    });
+
+    // Pausar TODOS los videos cuando cambia el slide
+    carrusel.on('beforeChange', function (event, slick, currentSlide, nextSlide) {
+        pauseAllVideos();
     });
 
     // Carrusel de servicios
@@ -63,13 +83,6 @@ $(document).ready(function () {
             carrusel.slick('slickPause');
         } else {
             carrusel.slick('slickPlay');
-        }
-    });
-
-    // Si carrusel cambia, pausar el video anterior
-    carrusel.on('beforeChange', function (event, slick, currentSlide, nextSlide) {
-        if (isYouTubeReady && players[currentSlide] && players[currentSlide].pauseVideo) {
-            players[currentSlide].pauseVideo();
         }
     });
 });
