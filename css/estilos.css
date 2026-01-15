@@ -4,9 +4,21 @@ body,
 #nuestros-servicios h2,
 header h1,
 #contacto h2 {
-    font-family: 'Poppins', sans-serif;
+    font-size: 32px;
+    margin: 20px 0;
+    letter-spacing: 2px;
+    animation: brillo 2s ease-in-out infinite;
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff;
 }
 
+@keyframes brillo {
+    0%, 100% {
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff;
+    }
+    50% {
+        text-shadow: 0 0 20px #fff, 0 0 40px #fff, 0 0 60px #fff, 0 0 80px #fff;
+    }
+}
 /* Tipografía Prompt (secundaria) */
 .servicio-texto,
 footer p,
@@ -446,6 +458,7 @@ footer p {
         width: 90%;
     }
 }
+
 
 
 
