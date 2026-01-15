@@ -309,7 +309,7 @@ header a:hover::after {
 }
 
 #contacto {
-    background-image: url('../RecursosOrbec/PatronMarca1.png');
+    background-image: url('../RecursosOrbec/Patron/PatronMarca1.png');
     background-size: cover; /* o 'contain' si quieres que se repita */
     background-position: center;
     background-repeat: repeat; /* o 'no-repeat' si es un patrón grande */
@@ -443,5 +443,6 @@ footer p {
         width: 90%;
     }
 }
+
 
 
