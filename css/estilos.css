@@ -312,7 +312,7 @@ header a:hover::after {
     background-image: url('/RecursosOrbec/Patron/PatronMarca1.png');
     background-size: cover; 
     background-position: center;
-    background-repeat: no repeat;
+    background-repeat: no-repeat;
     padding: 50px 20px;
     text-align: center;
     color: #fff;
@@ -443,6 +443,7 @@ footer p {
         width: 90%;
     }
 }
+
 
 
 
