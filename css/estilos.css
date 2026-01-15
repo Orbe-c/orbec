@@ -61,6 +61,14 @@ header {
 #logo-container:hover {
     transform: scale(1.05);
 }
+@keyframes brilloLogo {
+    0%, 100% {
+        filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.6));
+    }
+    50% {
+        filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.9));
+    }
+}
 
 #logo-container img {
     width: 100%;
@@ -460,6 +468,7 @@ footer p {
         width: 90%;
     }
 }
+
 
 
 
