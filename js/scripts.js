@@ -17,6 +17,10 @@ function onYouTubeIframeAPIReady() {
     $('iframe[id^="player-"]').each(function(index) {
         var iframeID = $(this).attr('id');
         players[index] = new YT.Player(iframeID, {
+            playerVars: {
+                'controls': 1,
+                'rel': 0
+            },
             events: {
                 'onStateChange': onPlayerStateChange
             }
@@ -112,3 +116,4 @@ window.addEventListener('scroll', function() {
         }, 1000);
     }
 });
+
