@@ -309,11 +309,10 @@ header a:hover::after {
 }
 
 #contacto {
-    background-color: red; /* ← AGREGA ESTA LÍNEA */
-    background-image: url('../RecursosOrbec/Patron/PatronMarca1.png');
-    background-size: cover; 
-    background-position: center;
-    background-repeat: no-repeat;
+    background-image: url('../RecursosOrbec/Patron/PatronMarca1.png') !important;
+    background-size: cover !important; 
+    background-position: center !important;
+    background-repeat: no-repeat !important;
     padding: 50px 20px;
     text-align: center;
     color: #fff;
@@ -435,6 +434,7 @@ footer p {
         width: 90%;
     }
 }
+
 
 
 
