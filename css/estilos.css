@@ -313,11 +313,14 @@ header a:hover::after {
     background-size: cover; 
     background-position: center;
     background-repeat: no-repeat;
-    padding: 80px 20px;
+    padding: 50px 20px;
     text-align: center;
     color: #fff;
     position: relative;
     min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 #contacto::before {
     content: '';
@@ -443,6 +446,7 @@ footer p {
         width: 90%;
     }
 }
+
 
 
 
