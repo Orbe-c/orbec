@@ -319,7 +319,16 @@ header a:hover::after {
     position: relative;
     min-height: 500px;
 }
-
+#contacto::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* 0.5 = 50% oscuro */
+    z-index: 0;
+}
 
 
 #contacto * {
@@ -434,6 +443,7 @@ footer p {
         width: 90%;
     }
 }
+
 
 
 
