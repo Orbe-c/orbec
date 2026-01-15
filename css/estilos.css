@@ -4,21 +4,9 @@ body,
 #nuestros-servicios h2,
 header h1,
 #contacto h2 {
-    font-size: 32px;
-    margin: 20px 0;
-    letter-spacing: 2px;
-    animation: brillo 2s ease-in-out infinite;
-    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff;
+    font-family: 'Poppins', sans-serif;
 }
 
-@keyframes brillo {
-    0%, 100% {
-        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff;
-    }
-    50% {
-        text-shadow: 0 0 20px #fff, 0 0 40px #fff, 0 0 60px #fff, 0 0 80px #fff;
-    }
-}
 /* Tipografía Prompt (secundaria) */
 .servicio-texto,
 footer p,
@@ -56,11 +44,15 @@ header {
     width: 120px;
     margin: 0 auto 15px;
     transition: transform 0.3s ease;
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.6));
+    animation: brilloLogo 3s ease-in-out infinite;
 }
 
 #logo-container:hover {
     transform: scale(1.05);
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.9));
 }
+
 @keyframes brilloLogo {
     0%, 100% {
         filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.6));
@@ -170,6 +162,7 @@ header a:hover::after {
         transform: scale(1);
     }
 }
+
 .power-on {
     animation: powerOn 2.5s ease-out forwards;
 }
@@ -227,7 +220,7 @@ header a:hover::after {
 .video-wrapper {
     position: relative;
     width: 100%;
-    padding-bottom: 56.25%; /* Ratio 16:9 */
+    padding-bottom: 56.25%;
     background-color: #ffffff;
 }
 
@@ -319,7 +312,7 @@ header a:hover::after {
 #redes-sociales a {
     color: #fff;
     margin: 0 20px;
-    font-size: 32px; 
+    font-size: 32px;
     text-decoration: none;
     transition: all 0.3s ease;
     display: inline-block;
@@ -330,7 +323,7 @@ header a:hover::after {
     color: #cccccc;
 }
 
-#to {
+#contacto {
     background-image: url('../RecursosOrbec/Patron/PatronMarca1.png');
     background-size: cover; 
     background-position: center;
@@ -344,6 +337,7 @@ header a:hover::after {
     flex-direction: column;
     justify-content: center;
 }
+
 #contacto::before {
     content: '';
     position: absolute;
@@ -351,10 +345,9 @@ header a:hover::after {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* 0.5 = 50% oscuro */
+    background-color: rgba(0, 0, 0, 0.5);
     z-index: 0;
 }
-
 
 #contacto * {
     position: relative;
@@ -365,6 +358,17 @@ header a:hover::after {
     font-size: 32px;
     margin: 20px 0;
     letter-spacing: 2px;
+    animation: brillo 2s ease-in-out infinite;
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff;
+}
+
+@keyframes brillo {
+    0%, 100% {
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff;
+    }
+    50% {
+        text-shadow: 0 0 20px #fff, 0 0 40px #fff, 0 0 60px #fff, 0 0 80px #fff;
+    }
 }
 
 #contacto p {
@@ -468,21 +472,3 @@ footer p {
         width: 90%;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
