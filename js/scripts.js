@@ -21,49 +21,56 @@ function onYouTubeIframeAPIReady() {
             players[index] = new YT.Player(iframeID, {
                 playerVars: {
                     'controls': 1,
-                    'rel': 0
+                    'rel': 0,
+                    'modestbranding': 1
                 },
                 events: {
                     'onStateChange': onPlayerStateChange,
-                    'onReady': function() {
+                    'onReady': function(event) {
                         console.log('Player ' + index + ' listo');
                     }
                 }
             });
         });
-    }, 1000);
+    }, 1500);
 }
 
 function onPlayerStateChange(event) {
     // Si un video empieza a reproducirse, pausar el carrusel
     if (event.data == YT.PlayerState.PLAYING) {
         $('#carrete').slick('slickPause');
+        console.log('Video reproduciéndose - carrusel pausado');
     } 
-    // Solo reanudar cuando el video TERMINA, NO cuando se pausa manualmente
+    // Solo reanudar cuando el video TERMINA
     else if (event.data == YT.PlayerState.ENDED) {
         $('#carrete').slick('slickPlay');
+        console.log('Video terminado - carrusel reanudado');
     }
 }
 
 $(document).ready(function () {
-    // Carrusel de proyectos (videos)
+    // Carrusel de proyectos (videos) - SLIDE CADA 5 SEGUNDOS
     var carrusel = $('#carrete').slick({
         infinite: true,
         slidesToShow: 1,
         slidesToScroll: 1,
         autoplay: true,
-        autoplaySpeed: 6000,
+        autoplaySpeed: 5000, // 5 segundos
         prevArrow: '<div class="carousel-prev">&#10094;</div>',
         nextArrow: '<div class="carousel-next">&#10095;</div>'
     });
 
-    // Pausar el video cuando cambia el slide
+    // PAUSAR VIDEO cuando cambia el slide (manualmente con flechas o automático)
     carrusel.on('beforeChange', function (event, slick, currentSlide, nextSlide) {
+        console.log('Cambiando slide de ' + currentSlide + ' a ' + nextSlide);
+        
+        // Pausar el video del slide actual
         if (isYouTubeReady && players[currentSlide]) {
             try {
                 players[currentSlide].pauseVideo();
+                console.log('Video ' + currentSlide + ' pausado');
             } catch(e) {
-                console.log('No se pudo pausar el video');
+                console.log('Error al pausar video ' + currentSlide + ':', e);
             }
         }
     });
@@ -103,14 +110,12 @@ window.addEventListener('scroll', function() {
     const isScrollingDown = currentScrollTop > lastScrollTop;
     lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop;
     
-    // Solo aplicar snap si estás bajando, no subiendo
     if (!isScrollingDown) return;
     
     const carrusel = document.getElementById('carrete-servicios');
     const rect = carrusel.getBoundingClientRect();
     const windowHeight = window.innerHeight;
     
-    // Solo se ancla si está muy cerca del tope (rango del 15%)
     if (rect.top < windowHeight * 0.15 && rect.top > -windowHeight * 0.15) {
         isSnapping = true;
         carrusel.scrollIntoView({ 
