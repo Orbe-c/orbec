@@ -19,7 +19,11 @@ function onYouTubeIframeAPIReady() {
         players[index] = new YT.Player(iframeID, {
             playerVars: {
                 'controls': 1,
-                'rel': 0
+                'modestbranding': 1,
+                'rel': 0,
+                'showinfo': 0,
+                'fs': 1,
+                'playsinline': 1
             },
             events: {
                 'onStateChange': onPlayerStateChange
@@ -116,5 +120,6 @@ window.addEventListener('scroll', function() {
         }, 1000);
     }
 });
+
 
 
