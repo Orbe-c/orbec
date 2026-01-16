@@ -472,12 +472,6 @@ footer p {
         width: 90%;
     }
 }
-.video-wrapper {
-    pointer-events: none;
-}
 
-.video-wrapper iframe {
-    pointer-events: auto;
-}
 
 
