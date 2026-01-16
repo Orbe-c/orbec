@@ -13,23 +13,25 @@ var isYouTubeReady = false;
 // Esta función se llama automáticamente cuando la API de YouTube está lista
 function onYouTubeIframeAPIReady() {
     isYouTubeReady = true;
-    // Crear reproductores para cada iframe
-    $('iframe[id^="player-"]').each(function(index) {
-        var iframeID = $(this).attr('id');
-        players[index] = new YT.Player(iframeID, {
-            playerVars: {
-                'controls': 1,
-                'modestbranding': 1,
-                'rel': 0,
-                'showinfo': 0,
-                'fs': 1,
-                'playsinline': 1
-            },
-            events: {
-                'onStateChange': onPlayerStateChange
-            }
+    
+    // Esperar a que Slick termine de cargar
+    setTimeout(function() {
+        $('iframe[id^="player-"]').each(function(index) {
+            var iframeID = $(this).attr('id');
+            players[index] = new YT.Player(iframeID, {
+                playerVars: {
+                    'controls': 1,
+                    'rel': 0
+                },
+                events: {
+                    'onStateChange': onPlayerStateChange,
+                    'onReady': function() {
+                        console.log('Player ' + index + ' listo');
+                    }
+                }
+            });
         });
-    });
+    }, 1000);
 }
 
 function onPlayerStateChange(event) {
@@ -120,6 +122,3 @@ window.addEventListener('scroll', function() {
         }, 1000);
     }
 });
-
-
-
