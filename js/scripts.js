@@ -73,17 +73,6 @@ $(document).ready(function () {
             carrusel.slick('slickPlay');
         }
     });
-
-    /* 🔥 ÚNICO FIX PARA LA BARRA ROJA 🔥 */
-    $('#carrete').on('mouseenter', 'iframe', function () {
-        carrusel.slick('slickSetOption', 'swipe', false);
-        carrusel.slick('slickSetOption', 'draggable', false);
-    });
-
-    $('#carrete').on('mouseleave', 'iframe', function () {
-        carrusel.slick('slickSetOption', 'swipe', true);
-        carrusel.slick('slickSetOption', 'draggable', true);
-    });
 });
 
 let isSnapping = false;
