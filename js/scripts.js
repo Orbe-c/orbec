@@ -24,9 +24,6 @@ function onYouTubeIframeAPIReady() {
 function onPlayerStateChange(event) {
     if (event.data === YT.PlayerState.PLAYING) {
         carrusel.slick('slickPause');
-        carrusel.slick('slickSetOption', 'swipe', false, true);
-        carrusel.slick('slickSetOption', 'touchMove', false, true);
-        carrusel.slick('slickSetOption', 'draggable', false, true);
     }
 
     if (
@@ -34,9 +31,6 @@ function onPlayerStateChange(event) {
         event.data === YT.PlayerState.ENDED
     ) {
         carrusel.slick('slickPlay');
-        carrusel.slick('slickSetOption', 'swipe', true, true);
-        carrusel.slick('slickSetOption', 'touchMove', true, true);
-        carrusel.slick('slickSetOption', 'draggable', true, true);
     }
 }
 
@@ -78,6 +72,17 @@ $(document).ready(function () {
         } else {
             carrusel.slick('slickPlay');
         }
+    });
+
+    /* 🔥 ÚNICO FIX PARA LA BARRA ROJA 🔥 */
+    $('#carrete').on('mouseenter', 'iframe', function () {
+        carrusel.slick('slickSetOption', 'swipe', false);
+        carrusel.slick('slickSetOption', 'draggable', false);
+    });
+
+    $('#carrete').on('mouseleave', 'iframe', function () {
+        carrusel.slick('slickSetOption', 'swipe', true);
+        carrusel.slick('slickSetOption', 'draggable', true);
     });
 });
 
