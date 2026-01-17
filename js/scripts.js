@@ -12,7 +12,6 @@ var carrusel;
 function onYouTubeIframeAPIReady() {
     $('iframe[id^="player-"]').each(function (index) {
         var iframeID = $(this).attr('id');
-
         players[index] = new YT.Player(iframeID, {
             events: {
                 onStateChange: onPlayerStateChange
@@ -25,11 +24,7 @@ function onPlayerStateChange(event) {
     if (event.data === YT.PlayerState.PLAYING) {
         carrusel.slick('slickPause');
     }
-
-    if (
-        event.data === YT.PlayerState.PAUSED ||
-        event.data === YT.PlayerState.ENDED
-    ) {
+    if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
         carrusel.slick('slickPlay');
     }
 }
@@ -81,8 +76,7 @@ let lastScrollTop = 0;
 window.addEventListener('scroll', function () {
     if (isSnapping) return;
 
-    const currentScrollTop =
-        window.pageYOffset || document.documentElement.scrollTop;
+    const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
     const isScrollingDown = currentScrollTop > lastScrollTop;
     lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop;
 
@@ -98,7 +92,6 @@ window.addEventListener('scroll', function () {
             behavior: 'smooth',
             block: 'start'
         });
-
         setTimeout(() => {
             isSnapping = false;
         }, 1000);
