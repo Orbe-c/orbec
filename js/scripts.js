@@ -1,55 +1,81 @@
 window.addEventListener('load', function () {
-    var preloader = document.getElementById('preloader');
+    const preloader = document.getElementById('preloader');
+    if (!preloader) return;
+
     preloader.classList.add('fade-out');
-    setTimeout(function() {
+    setTimeout(() => {
         preloader.style.display = 'none';
     }, 500);
 });
 
-// Variables para los reproductores de YouTube
-var players = [];
-var isYouTubeReady = false;
+let players = [];
+let isYouTubeReady = false;
 
-// Esta función se llama automáticamente cuando la API de YouTube está lista
+// YouTube llama esto automáticamente
 function onYouTubeIframeAPIReady() {
     isYouTubeReady = true;
-    console.log('YouTube API iniciando...');
-    
-    // Esperar a que Slick termine de cargar
-    setTimeout(function() {
-        $('iframe[id^="player-"]').each(function(index) {
-            var iframeID = $(this).attr('id');
-            console.log('Creando player: ' + iframeID);
-            players[index] = new YT.Player(iframeID, {
-                events: {
-                    'onStateChange': onPlayerStateChange,
-                    'onReady': function(event) {
-                        console.log('✓ Player ' + index + ' listo');
-                    }
-                }
-            });
-        });
-    }, 2000);
+    console.log('✓ YouTube API lista');
+}
+
+
+function isAnyVideoPlaying() {
+    return players.some(player => {
+        try {
+            return player && player.getPlayerState() === YT.PlayerState.PLAYING;
+        } catch (e) {
+            return false;
+        }
+    });
 }
 
 function onPlayerStateChange(event) {
-    // Si un video empieza a reproducirse, pausar el carrusel
-    if (event.data == YT.PlayerState.PLAYING) {
+    if (!$('#carrete').hasClass('slick-initialized')) return;
+
+    if (event.data === YT.PlayerState.PLAYING) {
         $('#carrete').slick('slickPause');
-        console.log('▶ Video reproduciéndose - carrusel pausado');
-    } 
-    // Reanudar cuando el video se pausa o termina
-    else if (event.data == YT.PlayerState.PAUSED || event.data == YT.PlayerState.ENDED) {
+        console.log('▶ Video PLAY → carrusel PAUSADO');
+    }
+
+    if (
+        (event.data === YT.PlayerState.PAUSED ||
+         event.data === YT.PlayerState.ENDED) &&
+        !isAnyVideoPlaying()
+    ) {
         $('#carrete').slick('slickPlay');
-        console.log('⏸ Video pausado/terminado - carrusel reanudado');
+        console.log('⏯ Ningún video activo → carrusel PLAY');
     }
 }
 
+
 $(document).ready(function () {
     console.log('Iniciando carruseles...');
-    
-    // Carrusel de proyectos (videos) - SLIDE CADA 5 SEGUNDOS
-    var carrusel = $('#carrete').slick({
+
+    /* ===== CARRUSEL DE VIDEOS ===== */
+    const carrusel = $('#carrete');
+
+    carrusel.on('init', function () {
+        console.log('✓ Slick listo → creando players YouTube');
+
+        if (!isYouTubeReady) {
+            console.warn('⚠ YouTube API aún no lista');
+            return;
+        }
+
+        $('iframe[id^="player-"]').each(function (index) {
+            const iframeID = this.id;
+
+            players[index] = new YT.Player(iframeID, {
+                events: {
+                    onReady: () => {
+                        console.log('✓ Player listo:', iframeID);
+                    },
+                    onStateChange: onPlayerStateChange
+                }
+            });
+        });
+    });
+
+    carrusel.slick({
         infinite: true,
         slidesToShow: 1,
         slidesToScroll: 1,
@@ -61,23 +87,18 @@ $(document).ready(function () {
         nextArrow: '<div class="carousel-next">&#10095;</div>'
     });
 
-    console.log('✓ Carrusel de videos iniciado');
-
-    // PAUSAR VIDEO cuando cambia el slide
-    carrusel.on('beforeChange', function (event, slick, currentSlide, nextSlide) {
-        console.log('→ Cambiando slide: ' + currentSlide + ' → ' + nextSlide);
-        
-        if (isYouTubeReady && players[currentSlide]) {
+    /* ===== PAUSAR VIDEO AL CAMBIAR SLIDE ===== */
+    carrusel.on('beforeChange', function (event, slick, currentSlide) {
+        if (players[currentSlide]) {
             try {
                 players[currentSlide].pauseVideo();
-                console.log('⏸ Video ' + currentSlide + ' pausado');
-            } catch(e) {
-                console.log('Error pausando video:', e);
+                console.log('⏸ Video pausado:', currentSlide);
+            } catch (e) {
+                console.warn('No se pudo pausar video:', e);
             }
         }
     });
 
-    // Carrusel de servicios
     $('#carrete-servicios').slick({
         infinite: true,
         slidesToShow: 1,
@@ -91,39 +112,43 @@ $(document).ready(function () {
         appendDots: $('#nuestros-servicios')
     });
 
-    // Pausar el carrusel cuando la pestaña no está visible
-    document.addEventListener("visibilitychange", function () {
+    /* ===== PAUSAR CARRUSEL SI LA PESTAÑA NO ESTÁ VISIBLE ===== */
+    document.addEventListener('visibilitychange', function () {
         if (document.hidden) {
             carrusel.slick('slickPause');
-        } else {
+        } else if (!isAnyVideoPlaying()) {
             carrusel.slick('slickPlay');
         }
     });
 });
 
-// Efecto de snap al carrusel cuando haces scroll
+
 let isSnapping = false;
 let lastScrollTop = 0;
 
-window.addEventListener('scroll', function() {
+window.addEventListener('scroll', function () {
     if (isSnapping) return;
-    
+
     const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
     const isScrollingDown = currentScrollTop > lastScrollTop;
-    lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop;
-    
+    lastScrollTop = Math.max(currentScrollTop, 0);
+
     if (!isScrollingDown) return;
-    
+
     const carrusel = document.getElementById('carrete-servicios');
+    if (!carrusel) return;
+
     const rect = carrusel.getBoundingClientRect();
     const windowHeight = window.innerHeight;
-    
+
     if (rect.top < windowHeight * 0.15 && rect.top > -windowHeight * 0.15) {
         isSnapping = true;
-        carrusel.scrollIntoView({ 
-            behavior: 'smooth', 
-            block: 'start' 
+
+        carrusel.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
         });
+
         setTimeout(() => {
             isSnapping = false;
         }, 1000);
