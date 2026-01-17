@@ -1,3 +1,4 @@
+
 window.addEventListener('load', function () {
     const preloader = document.getElementById('preloader');
     if (!preloader) return;
@@ -8,74 +9,53 @@ window.addEventListener('load', function () {
     }, 500);
 });
 
+
 let players = [];
-let isYouTubeReady = false;
 
-// YouTube llama esto automáticamente
+
 function onYouTubeIframeAPIReady() {
-    isYouTubeReady = true;
     console.log('✓ YouTube API lista');
-}
 
+    $('iframe[id^="player-"]').each(function (index) {
+        const iframeID = this.id;
 
-function isAnyVideoPlaying() {
-    return players.some(player => {
-        try {
-            return player && player.getPlayerState() === YT.PlayerState.PLAYING;
-        } catch (e) {
-            return false;
-        }
+        console.log('Creando player:', iframeID);
+
+        players[index] = new YT.Player(iframeID, {
+            events: {
+                onReady: function () {
+                    console.log('✓ Player listo:', iframeID);
+                },
+                onStateChange: onPlayerStateChange
+            }
+        });
     });
 }
 
+
 function onPlayerStateChange(event) {
-    if (!$('#carrete').hasClass('slick-initialized')) return;
+    const carrusel = $('#carrete');
+    if (!carrusel.hasClass('slick-initialized')) return;
 
     if (event.data === YT.PlayerState.PLAYING) {
-        $('#carrete').slick('slickPause');
+        carrusel.slick('slickPause');
         console.log('▶ Video PLAY → carrusel PAUSADO');
     }
 
     if (
-        (event.data === YT.PlayerState.PAUSED ||
-         event.data === YT.PlayerState.ENDED) &&
-        !isAnyVideoPlaying()
+        event.data === YT.PlayerState.PAUSED ||
+        event.data === YT.PlayerState.ENDED
     ) {
-        $('#carrete').slick('slickPlay');
-        console.log('⏯ Ningún video activo → carrusel PLAY');
+        carrusel.slick('slickPlay');
+        console.log('⏯ Video STOP → carrusel PLAY');
     }
 }
 
-
 $(document).ready(function () {
-    console.log('Iniciando carruseles...');
+    console.log('Inicializando Slick...');
 
     /* ===== CARRUSEL DE VIDEOS ===== */
-    const carrusel = $('#carrete');
-
-    carrusel.on('init', function () {
-        console.log('✓ Slick listo → creando players YouTube');
-
-        if (!isYouTubeReady) {
-            console.warn('⚠ YouTube API aún no lista');
-            return;
-        }
-
-        $('iframe[id^="player-"]').each(function (index) {
-            const iframeID = this.id;
-
-            players[index] = new YT.Player(iframeID, {
-                events: {
-                    onReady: () => {
-                        console.log('✓ Player listo:', iframeID);
-                    },
-                    onStateChange: onPlayerStateChange
-                }
-            });
-        });
-    });
-
-    carrusel.slick({
+    const carrusel = $('#carrete').slick({
         infinite: true,
         slidesToShow: 1,
         slidesToScroll: 1,
@@ -87,18 +67,21 @@ $(document).ready(function () {
         nextArrow: '<div class="carousel-next">&#10095;</div>'
     });
 
+    console.log('✓ Carrusel de videos listo');
+
     /* ===== PAUSAR VIDEO AL CAMBIAR SLIDE ===== */
-    carrusel.on('beforeChange', function (event, slick, currentSlide) {
+    $('#carrete').on('beforeChange', function (event, slick, currentSlide) {
         if (players[currentSlide]) {
             try {
                 players[currentSlide].pauseVideo();
                 console.log('⏸ Video pausado:', currentSlide);
             } catch (e) {
-                console.warn('No se pudo pausar video:', e);
+                console.warn('No se pudo pausar el video:', e);
             }
         }
     });
 
+    /* ===== CARRUSEL DE SERVICIOS ===== */
     $('#carrete-servicios').slick({
         infinite: true,
         slidesToShow: 1,
@@ -115,9 +98,9 @@ $(document).ready(function () {
     /* ===== PAUSAR CARRUSEL SI LA PESTAÑA NO ESTÁ VISIBLE ===== */
     document.addEventListener('visibilitychange', function () {
         if (document.hidden) {
-            carrusel.slick('slickPause');
-        } else if (!isAnyVideoPlaying()) {
-            carrusel.slick('slickPlay');
+            $('#carrete').slick('slickPause');
+        } else {
+            $('#carrete').slick('slickPlay');
         }
     });
 });
