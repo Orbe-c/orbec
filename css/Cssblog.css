@@ -46,7 +46,7 @@ header a {
     width: 120px;
     height: auto;
     animation: rotateLogo 5s linear infinite;
-
+}
 @keyframes rotateLogo {
     from {
         transform: rotate(0deg);
