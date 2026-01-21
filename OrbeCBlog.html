@@ -6,170 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OrbeC Blog</title>
 
-    <!-- Vincula las hojas de estilo directamente desde CDN -->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" />
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" />
-
-    <!-- Estilos CSS personalizados -->
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Courier New', Courier, monospace;
-            background-color: #000; /* Fondo negro */
-            color: #fff; /* Texto blanco */
-        }
-
-        header {
-            padding: 20px;
-            text-align: center;
-            background-color: #000; 
-            margin: 0;
-        }
-
-        header h1 {
-            margin: 0;
-            max-width: 80%;
-            margin-left: auto;
-            margin-right: auto;
-            font-size: 1.5em;
-        }
-
-        header div {
-            margin-top: 10px;
-        }
-
-        header a {
-            color: #fff; /* Letra blanca */
-            margin: 0 20px;
-            font-size: 18px;
-            text-decoration: none;
-            font-family: 'Courier New', Courier, monospace;
-        }
-
-        #logo {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            background-color: #000; /* Negro */
-            margin-bottom: 20px; /* Añadido espacio entre el logo y el texto */
-        }
-
-        #logo img {
-            max-width: 100%;
-            height: auto;
-            animation: rotateLogo 5s linear infinite;
-        }
-
-        @keyframes rotateLogo {
-            from {
-                transform: rotate(0deg);
-            }
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        #contenido-blanko {
-            background-color: #fff; /* Fondo blanco */
-            color: #000; /* Texto negro */
-            padding: 20px;
-            display: flex;
-            justify-content: space-around;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        #texto {
-            width: 50%;
-            box-sizing: border-box;
-            text-align: center;
-        }
-
-        #imagen {
-            width: 50%;
-            box-sizing: border-box;
-        }
-
-        #imagen img {
-            width: 50%;
-            height: auto;
-        }
-
-        /* Estilos para la sección del mural de imágenes */
-        #mural {
-            background-color: #fff;
-            padding: 20px;
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            margin-top: 20px;
-            margin-bottom: 20px; /* Añadido margen inferior */
-        }
-
-        #mural img {
-            width: 30%; /* Ajusta el ancho de las imágenes */
-            margin-bottom: 20px;
-        }
-
-        #titulo-fotos {
-            text-align: center;
-            margin-bottom: 20px; /* Añadido margen inferior */
-        }
-
-        #redes-sociales {
-            background-color: #333333;
-            padding: 20px;
-            text-align: center;
-            color: #fff;
-        }
-
-        #redes-sociales a {
-            color: #fff;
-            margin: 0 10px;
-            font-size: 20px;
-            text-decoration: none;
-        }
-
-        #contacto {
-            background-color: #000000; /* Negro */
-            padding: 20px;
-            text-align: center;
-            color: #fff;
-        }
-
-        /**Movil**/
-        @media (max-width: 767px) {
-            #contenido-blanko {
-                flex-direction: column;
-                align-items: center;
-            }
-            #texto, #imagen {
-                width: 100%;
-            }
-        }
-
-        /**Tablet**/
-        @media (min-width: 768px) and (max-width: 990px) {
-            #texto {
-                width: 50%;
-            }
-            #imagen {
-                width: 50%;
-            }
-        }
-
-        /**Escritorio**/
-        @media (min-width: 991px) {
-            #texto {
-                width: 50%;
-            }
-            #imagen {
-                width: 50%;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="css/blog.css">
 </head>
 
 <body>
@@ -197,12 +36,9 @@
         </div>
     </div>
 
-    <!-- Título para el mural de fotos -->
     <h2 id="titulo-fotos">Fotos del mes</h2>
 
-    <!-- Sección del mural de imágenes -->
     <div id="mural">
-        <!-- Agrega las imágenes aquí -->
         <img src="imagenes/1.JPG" alt="Imagen 1">
         <img src="imagenes/2.JPG" alt="Imagen 2">
         <img src="imagenes/3.JPG" alt="Imagen 3">
@@ -210,12 +46,10 @@
         <img src="imagenes/5.JPG" alt="Imagen 5">
     </div>
 
-    <!-- Sección de redes sociales -->
     <div id="redes-sociales">
         <a href="https://www.instagram.com/ronilio_/" target="_blank">Instagram</a>
     </div>
 
-    <!-- Sección de contacto -->
     <section id="contacto">
         <p>HAGAMOS REALIDAD TUS HISTORIAS</p>
         <h2>Contacto</h2>
@@ -224,11 +58,9 @@
         <p>Teléfono: 70295222</p>
     </section>
 
-    <!-- Vincula los scripts de jQuery y Slick Carousel desde CDN -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-
-    <!-- Agrega tu script personalizado aquí -->
+    <script src="js/blog.js"></script>
 
 </body>
 
