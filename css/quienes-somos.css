@@ -1,11 +1,3 @@
-
-
-/* Sobreescribir fondo para esta página */
-body {
-    background-color: #EFECE3;
-    color: #302F2B;
-}
-
 /* Contenedor principal */
 #contenido {
     padding: 40px 20px;
