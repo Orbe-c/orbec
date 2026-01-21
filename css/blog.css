@@ -1,91 +1,67 @@
+/* ========================================
+   ARCHIVO: css/blog.css
+   Solo estilos específicos del blog
+   ======================================== */
+
+/* Sobreescribir fondo para esta página */
 body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Courier New', Courier, monospace;
-    background-color: #000;
-    color: #fff;
+    background-color: #1A1A1A;
+    color: #EFECE3;
 }
 
-header {
-    padding: 20px;
-    text-align: center;
-    background-color: #000; 
-    margin: 0;
-}
-
-header h1 {
-    margin: 0;
-    max-width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-    font-size: 1.5em;
-}
-
-header div {
-    margin-top: 10px;
-}
-
-header a {
-    color: #fff;
-    margin: 0 20px;
-    font-size: 18px;
-    text-decoration: none;
-    font-family: 'Courier New', Courier, monospace;
-}
-
-#logo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    background-color: #000;
-    margin-bottom: 20px;
-}
-
-#logo img {
-    max-width: 100%;
-    height: auto;
-    animation: rotateLogo 5s linear infinite;
-}
-
-@keyframes rotateLogo {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
-}
-
+/* Contenedor blanco del blog */
 #contenido-blanko {
-    background-color: #fff;
-    color: #000;
-    padding: 20px;
+    background-color: #EFECE3;
+    color: #302F2B;
+    padding: 40px 20px;
     display: flex;
     justify-content: space-around;
     width: 100%;
     box-sizing: border-box;
+    gap: 40px;
 }
 
+/* Texto del blog */
 #texto {
     width: 50%;
     box-sizing: border-box;
     text-align: center;
 }
 
+#texto p {
+    line-height: 1.8;
+    font-size: 1.1em;
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+/* Imagen del blog */
 #imagen {
     width: 50%;
     box-sizing: border-box;
+    text-align: center;
 }
 
 #imagen img {
     width: 50%;
     height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
+/* Título de fotos del mes */
+#titulo-fotos {
+    text-align: center;
+    color: #EFECE3;
+    font-size: 2em;
+    margin: 40px 0 20px;
+    letter-spacing: 2px;
+}
+
+/* Mural de fotos */
 #mural {
-    background-color: #fff;
-    padding: 20px;
+    background-color: #EFECE3;
+    padding: 40px 20px;
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
@@ -96,32 +72,13 @@ header a {
 #mural img {
     width: 30%;
     margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
 }
 
-#titulo-fotos {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-#redes-sociales {
-    background-color: #333333;
-    padding: 20px;
-    text-align: center;
-    color: #fff;
-}
-
-#redes-sociales a {
-    color: #fff;
-    margin: 0 10px;
-    font-size: 20px;
-    text-decoration: none;
-}
-
-#contacto {
-    background-color: #000000;
-    padding: 20px;
-    text-align: center;
-    color: #fff;
+#mural img:hover {
+    transform: scale(1.05);
 }
 
 /* Responsive */
@@ -129,26 +86,24 @@ header a {
     #contenido-blanko {
         flex-direction: column;
         align-items: center;
+        gap: 20px;
     }
+    
     #texto, #imagen {
         width: 100%;
     }
+    
+    #imagen img {
+        width: 80%;
+    }
+    
+    #mural img {
+        width: 45%;
+    }
 }
 
-@media (min-width: 768px) and (max-width: 990px) {
-    #texto {
-        width: 50%;
-    }
-    #imagen {
-        width: 50%;
-    }
-}
-
-@media (min-width: 991px) {
-    #texto {
-        width: 50%;
-    }
-    #imagen {
-        width: 50%;
+@media (max-width: 480px) {
+    #mural img {
+        width: 100%;
     }
 }
