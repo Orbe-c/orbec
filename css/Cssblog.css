@@ -116,12 +116,6 @@ header a {
     text-decoration: none;
 }
 
-#contacto {
-    background-color: #000000;
-    padding: 20px;
-    text-align: center;
-    color: #fff;
-}
 
 /* Responsive */
 @media (max-width: 767px) {
