@@ -7,165 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>ORBE C Films - Quiénes somos</title>
 
-    <!-- Vincula las hojas de estilo directamente desde CDN -->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" />
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" />
-    
-    <!-- Estilos CSS personalizados -->
-    <style>
-        body {
-            background-color: #fff; /* Blanco */
-            color: #000; /* Negro para el texto */
-            font-family: 'Courier New', Courier, monospace;
-            margin: 0;
-            padding: 0;
-        }
-
-        header {
-            text-align: center;
-            background-color: #000; /* Negro */
-            padding: 20px;
-            margin: 0;
-        }
-
-        header h1 {
-            margin: 0;
-            max-width: 80%;
-            margin-left: auto;
-            margin-right: auto;
-            font-size: 1.5em;
-            color: #fff; /* Color del texto en el encabezado */
-        }
-
-        header div {
-            margin-top: 10px;
-        }
-
-        header a {
-            color: #fff; /* Letra blanca */
-            margin: 0 20px;
-            font-size: 18px; /* Tamaño de fuente ajustado para móviles */
-            text-decoration: none;
-            font-family: 'Courier New', Courier, monospace;
-        }
-
-        #contenido {
-            padding: 20px;
-        }
-
-        #contenido > h2 {
-            color: #000; /* Negro para el texto */
-        }
-
-        #logo {
-            background-color: #000; /* Negro */
-            padding: 20px;
-            text-align: center;
-        }
-
-        #logo img {
-            max-width: 100%;
-            height: auto;
-            animation: rotateLogo 5s linear infinite;
-        }
-
-        /* Rotar el logo */
-        @keyframes rotateLogo {
-            from {
-                transform: rotate(0deg); /* Inicia la rotación desde 0 grados */
-            }
-            to {
-                transform: rotate(360deg); /* Termina la rotación en 360 grados (una vuelta completa) */
-            }
-        }
-
-        #seccion1 {
-            display: flex;
-            background-color: #fff; /* Blanco para el fondo de la sección */
-            margin-bottom: 20px; /* Espacio inferior entre secciones */
-        }
-
-        #seccion1 > div {
-            flex: 1;
-            padding: 20px;
-        }
-
-        #seccion1 .texto {
-            background-color: #fff; /* Color de fondo para la sección de texto */
-        }
-
-        #seccion1 img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        /* Media query para pantallas con un ancho máximo de 600px (dispositivos móviles típicos) */
-        @media screen and (max-width: 600px) {
-            #seccion1 {
-                flex-direction: column; /* Cambiar a un diseño de columna para móviles */
-            }
-
-            #seccion1 > div {
-                padding: 20px;
-            }
-        }
-
-        /* Estilos para la sección 3 */
-        #seccion3 {
-            display: flex;
-            background-color: #fff; /* Blanco para el fondo de la sección */
-            margin-bottom: 20px; /* Espacio inferior entre secciones */
-        }
-
-        #seccion3 > div {
-            flex: 1;
-            padding: 20px;
-        }
-
-        #seccion3 .texto {
-            background-color: #fff; /* Color de fondo para la sección de texto */
-        }
-
-        #seccion3 img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        /* Media query para pantallas con un ancho máximo de 600px (dispositivos móviles típicos) */
-        @media screen and (max-width: 600px) {
-            #seccion3 {
-                flex-direction: column; /* Cambiar a un diseño de columna para móviles */
-            }
-
-            #seccion3 > div {
-                padding: 20px;
-            }
-        }
-
-
-        #redes-sociales {
-            background-color: #333333;
-            padding: 20px;
-            text-align: center;
-            color: #fff;
-        }
-
-        #redes-sociales a {
-            color: #fff;
-            margin: 0 10px;
-            font-size: 20px;
-            text-decoration: none;
-            
-        }
-
-        #contacto {
-            background-color: #000000; /* Negro */
-            padding: 20px;
-            text-align: center;
-            color: #fff;
-        }
-
-    </style>
+    <link rel="stylesheet" href="css/quienes-somos.css">
 </head>
 
 <body>
@@ -195,7 +39,7 @@ inspirar a las personas y dar voz a lo que pocas veces se escucha.
 En El Salvador, dedicarse al cine no es fácil. Muchas veces toca aprender de 
 todo: cámaras, luces, sonido, arte. Pero de ese esfuerzo colectivo surge una 
 comunidad que se apoya, aprende y crece en cada rodaje. </p>
- <p>El nombre “La Orbe Cinematográfica” representa ese universo construido por 
+ <p>El nombre "La Orbe Cinematográfica" representa ese universo construido por 
 quienes hacen posible el cine salvadoreño. Su identidad visual en blanco y 
 negro simboliza la dualidad entre luz y oscuridad, recordando que el cine nace 
 precisamente de ese contraste</p>
@@ -208,7 +52,6 @@ precisamente de ese contraste</p>
             </div>
         </div>
 
-        <!-- Sección 3: Foto y texto al revés -->
         <div id="seccion3">
             <div>
                 <img src="imagenes/rs.jpg" alt="Nombre de la foto">
@@ -237,14 +80,10 @@ precisamente de ese contraste</p>
         <p>&copy; aaaaaa.</p>
     </footer>
 
-    <!-- Vincula los scripts de jQuery y Slick Carousel desde CDN -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-
-    <!-- Agrega tu script personalizado aquí -->
+    <script src="js/quienes-somos.js"></script>
 
 </body>
 
 </html>
-
-
