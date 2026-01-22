@@ -1,10 +1,18 @@
-window.addEventListener('load', function () {
+function hidePreloader() {
     var preloader = document.getElementById('preloader');
-    preloader.classList.add('fade-out');
-    setTimeout(function () {
-        preloader.style.display = 'none';
-    }, 500);
-});
+    if (preloader) {
+        preloader.classList.add('fade-out');
+        setTimeout(function() {
+            preloader.style.display = 'none';
+        }, 500);
+    }
+}
+
+if (document.readyState === 'complete') {
+    hidePreloader();
+} else {
+    window.addEventListener('load', hidePreloader);
+}
 
 var players = [];
 var carrusel;
@@ -97,3 +105,4 @@ window.addEventListener('scroll', function () {
         }, 1000);
     }
 });
+
