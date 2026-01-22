@@ -43,8 +43,8 @@ $(document).ready(function () {
 
     // Cambio de logo al hacer click
 const logos = [
-    "RecursosOrbec/Logos/Logo orbe-10.png,
-    "RecursosOrbec/Logos/Logo orbe-12.png",
+    "RecursosOrbec/Logos/Logo orbe-10.png",
+    "RecursosOrbec/Logos/Logo orbe-12.png"
 ];
 
 let currentLogo = 0;
@@ -139,4 +139,5 @@ window.addEventListener('scroll', function () {
         }, 1000);
     }
 });
+
 
