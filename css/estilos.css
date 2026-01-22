@@ -301,6 +301,10 @@ header a:hover::after {
         transform: translate(-50%, -50%);
     }
 }
+.espacio-visual {
+    height: 120px;
+    background-color: #ffffff;
+}
 
 #redes-sociales {
     background: transparent;
@@ -481,6 +485,7 @@ footer p {
         width: 90%;
     }
 }
+
 
 
 
