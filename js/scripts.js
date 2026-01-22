@@ -1,25 +1,34 @@
+// Preloader
 window.addEventListener('load', function () {
     var preloader = document.getElementById('preloader');
     preloader.classList.add('fade-out');
-    setTimeout(function() {
+    setTimeout(function () {
         preloader.style.display = 'none';
     }, 500);
 });
 
+// Variables para los reproductores de YouTube
 var players = [];
 var carrusel;
+var isYouTubeReady = false;
 
+// Esta función se llama automáticamente cuando la API de YouTube está lista
 function onYouTubeIframeAPIReady() {
     $('iframe[id^="player-"]').each(function (index) {
         var iframeID = $(this).attr('id');
         players[index] = new YT.Player(iframeID, {
             events: {
-                onStateChange: onPlayerStateChange
+                onStateChange: onPlayerStateChange,
+                onReady: function() {
+                    isYouTubeReady = true;
+                    console.log('Player ' + index + ' listo');
+                }
             }
         });
     });
 }
 
+// Función que detecta cambios en el estado del video
 function onPlayerStateChange(event) {
     if (event.data === YT.PlayerState.PLAYING) {
         carrusel.slick('slickPause');
@@ -29,7 +38,9 @@ function onPlayerStateChange(event) {
     }
 }
 
+// Cuando el DOM está listo
 $(document).ready(function () {
+    // Carrusel de proyectos (videos)
     carrusel = $('#carrete').slick({
         infinite: true,
         slidesToShow: 1,
@@ -42,12 +53,19 @@ $(document).ready(function () {
         nextArrow: '<div class="carousel-next">&#10095;</div>'
     });
 
+    // Pausar el video cuando cambia el slide
     carrusel.on('beforeChange', function (event, slick, currentSlide) {
-        if (players[currentSlide]) {
-            players[currentSlide].pauseVideo();
+        if (isYouTubeReady && players[currentSlide]) {
+            try {
+                players[currentSlide].pauseVideo();
+                console.log('Video pausado');
+            } catch(e) {
+                console.log('Error al pausar');
+            }
         }
     });
 
+    // Carrusel de servicios
     $('#carrete-servicios').slick({
         infinite: true,
         slidesToShow: 1,
@@ -61,6 +79,7 @@ $(document).ready(function () {
         appendDots: $('#nuestros-servicios')
     });
 
+    // Pausar el carrusel cuando la pestaña no está visible
     document.addEventListener('visibilitychange', function () {
         if (document.hidden) {
             carrusel.slick('slickPause');
@@ -70,22 +89,23 @@ $(document).ready(function () {
     });
 });
 
+// Efecto de snap al carrusel cuando haces scroll
 let isSnapping = false;
 let lastScrollTop = 0;
 
 window.addEventListener('scroll', function () {
     if (isSnapping) return;
-    
+
     const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
     const isScrollingDown = currentScrollTop > lastScrollTop;
     lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop;
-    
+
     if (!isScrollingDown) return;
-    
+
     const carruselServicios = document.getElementById('carrete-servicios');
     const rect = carruselServicios.getBoundingClientRect();
     const windowHeight = window.innerHeight;
-    
+
     if (rect.top < windowHeight * 0.15 && rect.top > -windowHeight * 0.15) {
         isSnapping = true;
         carruselServicios.scrollIntoView({
