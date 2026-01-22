@@ -303,24 +303,21 @@ header a:hover::after {
 }
 
 #redes-sociales {
-    background: linear-gradient(135deg, #333333 0%, #1a1a1a 100%);
-    padding: 30px;
+    background: transparent;
+    padding: 40px 0;
     text-align: center;
-    color: #fff;
 }
 
 #redes-sociales a {
-    color: #fff;
-    margin: 0 20px;
-    font-size: 32px;
-    text-decoration: none;
+    color: #ffffff;
+    margin: 0 25px;
+    font-size: 36px;
     transition: all 0.3s ease;
-    display: inline-block;
 }
 
 #redes-sociales a:hover {
-    transform: translateY(-3px);
     color: #cccccc;
+    transform: scale(1.15);
 }
 
 #contacto {
@@ -484,6 +481,7 @@ footer p {
         width: 90%;
     }
 }
+
 
 
 
