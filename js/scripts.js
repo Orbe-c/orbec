@@ -40,6 +40,28 @@ function onPlayerStateChange(event) {
 
 // Cuando el DOM está listo
 $(document).ready(function () {
+
+    // Cambio de logo al hacer click
+const logos = [
+    "RecursosOrbec/Logos/Logo orbe-10.png,
+    "RecursosOrbec/Logos/Logo orbe-12.png",
+];
+
+let currentLogo = 0;
+const logoElement = document.getElementById("logo");
+
+if (logoElement) {
+    logoElement.addEventListener("click", () => {
+        logoElement.style.opacity = 0;
+
+        setTimeout(() => {
+            currentLogo = (currentLogo + 1) % logos.length;
+            logoElement.src = logos[currentLogo];
+            logoElement.style.opacity = 1;
+        }, 150);
+    });
+}
+
     // Carrusel de proyectos (videos)
     carrusel = $('#carrete').slick({
         infinite: true,
@@ -117,3 +139,4 @@ window.addEventListener('scroll', function () {
         }, 1000);
     }
 });
+
