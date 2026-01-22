@@ -329,18 +329,18 @@ header a:hover::after {
     background-size: 300px; 
     background-position: center;
     background-repeat: repeat;
-    padding: 120px 20px;
+    padding: 70px 20px 50px;
     text-align: center;
-    color: #fff;
+    color: #000;
     position: relative;
-    min-height: 500px;
+    min-height: autopx;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
 }
 #contacto footer {
     margin-top: auto;
-    padding-top: 40px;
+    padding-top: 50px;
 }
 #contacto footer p {
     font-size: 11px;
@@ -487,6 +487,7 @@ footer p {
         width: 90%;
     }
 }
+
 
 
 
