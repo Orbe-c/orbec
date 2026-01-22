@@ -1,18 +1,10 @@
-function hidePreloader() {
+window.addEventListener('load', function () {
     var preloader = document.getElementById('preloader');
-    if (preloader) {
-        preloader.classList.add('fade-out');
-        setTimeout(function() {
-            preloader.style.display = 'none';
-        }, 500);
-    }
-}
-
-if (document.readyState === 'complete') {
-    hidePreloader();
-} else {
-    window.addEventListener('load', hidePreloader);
-}
+    preloader.classList.add('fade-out');
+    setTimeout(function() {
+        preloader.style.display = 'none';
+    }, 500);
+});
 
 var players = [];
 var carrusel;
@@ -83,17 +75,17 @@ let lastScrollTop = 0;
 
 window.addEventListener('scroll', function () {
     if (isSnapping) return;
-
+    
     const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
     const isScrollingDown = currentScrollTop > lastScrollTop;
     lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop;
-
+    
     if (!isScrollingDown) return;
-
+    
     const carruselServicios = document.getElementById('carrete-servicios');
     const rect = carruselServicios.getBoundingClientRect();
     const windowHeight = window.innerHeight;
-
+    
     if (rect.top < windowHeight * 0.15 && rect.top > -windowHeight * 0.15) {
         isSnapping = true;
         carruselServicios.scrollIntoView({
@@ -105,4 +97,3 @@ window.addEventListener('scroll', function () {
         }, 1000);
     }
 });
-
