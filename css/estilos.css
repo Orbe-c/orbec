@@ -44,11 +44,7 @@ header {
 
 #logo {
     cursor: pointer;
-    transition: opacity 0.35s ease, transform 0.35s ease, filter 0.35s ease;
-    width: 100%;
-    max-width: 120px;
-    height: auto;
-    display: block;
+    transition: opacity 0.35s ease, transform 0.35s ease, filter 0.35s ease;   
 }
 
 #logo.fade {
@@ -502,6 +498,7 @@ footer p {
         width: 90%;
     }
 }
+
 
 
 
