@@ -327,14 +327,14 @@ header a:hover::after {
 
 #redes-sociales a {
     color: #ffffff;
-    margin: 0 25px;
-    font-size: 36px;
+    margin: 0 18px;
+    font-size: 22px;
     transition: all 0.3s ease;
 }
 
 #redes-sociales a:hover {
     color: #cccccc;
-    transform: scale(1.15);
+    transform: scale(1.1);
 }
 
 #contacto {
@@ -342,7 +342,8 @@ header a:hover::after {
     background-size: 300px; 
     background-position: center;
     background-repeat: repeat;
-    padding: 70px 20px 20px;
+    padding: 40px 20px 30px;
+    min-height:auto;
     text-align: center;
     color: #EFECE3;
     position: relative;
@@ -378,9 +379,8 @@ header a:hover::after {
 
 #contacto h2 {
     font-size: 32px;
-    margin: 20px 0;
+    margin: 20px 0 15px;
     letter-spacing: 2px;
-    animation: brillo 2s ease-in-out infinite;
     text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff;
 }
 
@@ -399,10 +399,10 @@ header a:hover::after {
 }
 
 #contacto p:first-child {
-    font-size: 20px;
+    font-size: 14px;
     font-weight: bold;
-    letter-spacing: 1px;
-    margin-bottom: 30px;
+    letter-spacing: 3px;
+    margin-bottom: 25px;
 }
 
 footer {
@@ -498,6 +498,7 @@ footer p {
         width: 90%;
     }
 }
+
 
 
 
