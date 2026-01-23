@@ -39,7 +39,7 @@ header a.section-link {
 }
 
 header {
-    background-color: #000;
+    background-color: var(--negro);
     padding: 30px 20px;
     text-align: center;
     box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
@@ -90,7 +90,7 @@ header h1 {
     margin: 0;
     font-size: 2em;
     letter-spacing: 3px;
-    background: linear-gradient(135deg, #ffffff 0%, #cccccc 100%);
+    background: linear-gradient(135deg, var(--blanco) 0%, var(--gris) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -101,7 +101,7 @@ header div {
 }
 
 header a {
-    color: #ffffff;
+    color: var(--blanco);
     margin: 0 15px;
     font-size: 16px;
     text-decoration: none;
@@ -111,7 +111,7 @@ header a {
 }
 
 header a:hover {
-    color: #cccccc;
+    color: var(--gris);
 }
 
 header a::after {
@@ -121,7 +121,7 @@ header a::after {
     left: 0;
     width: 0;
     height: 2px;
-    background-color: #ffffff;
+    background-color: var(--blanco);
     transition: width 0.3s ease;
 }
 
@@ -134,7 +134,7 @@ header a:hover::after {
     position: fixed;
     width: 100%;
     height: 100%;
-    background-color: #000;
+    background-color: var(--negro);
     top: 0;
     left: 0;
     z-index: 9999;
@@ -191,8 +191,8 @@ header a:hover::after {
     text-align: center;
     margin-top: 0;
     font-size: 32px;
-    color: #000;
-    background-color: #ffffff;
+    color: var(--negro);
+    background-color: var(--blanco);
     padding: 40px 0 30px;
     letter-spacing: 2px;
 }
@@ -213,12 +213,12 @@ header a:hover::after {
     transform: translateX(-50%);
     width: 60px;
     height: 3px;
-    background-color: #000;
+    background-color: var(--negro);
 }
 
 /* Sección completa de proyectos con fondo blanco */
 #seccion-proyectos {
-    background-color: #ffffff;
+    background-color: var(--blanco);
     padding: 0;
 }
 
@@ -228,11 +228,11 @@ header a:hover::after {
     max-width: 960px;
     margin: 0 auto;
     padding: 40px 20px;
-    background-color: #ffffff;
+    background-color: var(--blanco);
 }
 
 .slick-slide {
-    background-color: #ffffff;
+    background-color: var(--blanco);
 }
 
 /* Wrapper responsive para videos 16:9 */
@@ -240,7 +240,7 @@ header a:hover::after {
     position: relative;
     width: 100%;
     padding-bottom: 56.25%;
-    background-color: #ffffff;
+    background-color: var(--blanco);
 }
 
 /* Videos en formato 16:9 correcto */
@@ -299,7 +299,7 @@ header a:hover::after {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: #ffffff; 
+    color: var(--blanco); 
     font-size: 48px; 
     font-weight: bold;
     text-align: center;
@@ -322,7 +322,7 @@ header a:hover::after {
 }
 .espacio-visual {
     height: 120px;
-    background-color: #ffffff;
+    background-color: var(--blanco);
 }
 
 #redes-sociales {
@@ -332,26 +332,26 @@ header a:hover::after {
 }
 
 #redes-sociales a {
-    color: #ffffff;
+    color: var(--blanco);
     margin: 0 18px;
     font-size: 22px;
     transition: all 0.3s ease;
 }
 
 #redes-sociales a:hover {
-    color: #cccccc;
+    color: var(--gris);
     transform: scale(1.1);
 }
 
 #contacto {
-    background-color:#EFECE3;
+    background-color: var(--blanco);
     background-size: 300px; 
     background-position: center;
     background-repeat: repeat;
     padding: 40px 20px 30px;
     min-height:auto;
     text-align: center;
-    color: #EFECE3;
+    color: var(--blanco);
     position: relative;
     display: block;
 
@@ -436,7 +436,7 @@ footer p {
 .carousel-prev,
 .carousel-next {
     font-size: 24px;
-    color: #000;
+    color: var(--negro);
     background-color: rgba(255, 255, 255, 0.9);
     position: absolute;
     top: 50%;
@@ -451,7 +451,7 @@ footer p {
 
 .carousel-prev:hover,
 .carousel-next:hover {
-    background-color: #ffffff;
+    background-color: var(--blanco);
     transform: translateY(-50%) scale(1.1);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
@@ -509,6 +509,7 @@ footer p {
         width: 90%;
     }
 }
+
 
 
 
