@@ -1,4 +1,10 @@
-/* Tipografía Poppins (principal) */
+:root {
+    --negro: #1A1A1A;
+    --blanco: #EFECE3;
+    --amarillo: #F5D825; /* solo acento */
+    --gris: #302F2B;     /* transición */
+}
+
 body,
 #nuestros-proyectos h2,
 #nuestros-servicios h2,
@@ -16,8 +22,8 @@ header a,
 }
 
 body {
-    background-color: #000;
-    color: #ffffff;
+    background-color: var(--negro);
+    color: var(--blanco);
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
@@ -503,6 +509,7 @@ footer p {
         width: 90%;
     }
 }
+
 
 
 
