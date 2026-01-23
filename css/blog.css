@@ -1,14 +1,14 @@
 /* ESTILOS ESPECÍFICOS PARA BLOG */
 
 /* Contenido principal del blog */
-#contenido-blanko {
+#contenido-blog {
     background-color: var(--blanco);
     padding: 60px 40px;
     display: flex;
     gap: 50px;
     align-items: flex-start;
-    max-width: 1400px;
-    margin: 0 auto;
+    max-width: 100px;
+    margin: 0;
 }
 
 #texto {
