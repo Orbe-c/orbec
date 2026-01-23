@@ -40,6 +40,19 @@ header {
 }
 
 /* Logo container con tamaño controlado */
+/*animacion /*
+#logo {
+    cursor: pointer;
+    transition: opacity 0.35s ease, transform 0.35s ease, filter 0.35s ease;
+}
+
+#logo.fade {
+    opacity: 0;
+    transform: scale(0.96);
+    filter: brightness(0.6);
+}
+
+
 #logo-container {
     width: 120px;
     margin: 0 auto 15px;
@@ -486,6 +499,7 @@ footer p {
         width: 90%;
     }
 }
+
 
 
 
