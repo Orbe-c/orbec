@@ -21,7 +21,7 @@ header a,
 }
 
 body {
-    background-color: var(--negro);
+    background-color: var(--blanco);
     color: var(--blanco);
     font-family: 'Poppins', sans-serif;
     margin: 0;
@@ -470,6 +470,7 @@ header a:hover::after {
         width: 90%;
     }
 }
+
 
 
 
