@@ -89,7 +89,8 @@ header h1 {
     margin: 0;
     font-size: 2em;
     letter-spacing: 3px;
-    color: var--(blanco);
+    color: var(--blanco);
+}
 
 header div {
     margin-top: 10px;
@@ -469,6 +470,7 @@ header a:hover::after {
         width: 90%;
     }
 }
+
 
 
 
