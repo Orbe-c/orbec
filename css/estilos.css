@@ -15,7 +15,6 @@ header h1,
 
 /* Tipografía Prompt (secundaria) */
 .servicio-texto,
-footer p,
 header a,
 #contacto p {
     font-family: 'Prompt', sans-serif;
@@ -344,7 +343,7 @@ header a:hover::after {
 }
 
 #contacto {
-    background-color: var(--blanco);
+    background-color: var(--negro);
     background-size: 300px; 
     background-position: center;
     background-repeat: repeat;
@@ -414,22 +413,6 @@ header a:hover::after {
     font-size: 13px;
     opacity: 0.6;
     letter-spacing: 1px;
-}
-
-footer {
-    background: transparent;
-    padding: 0;
-    text-align: center;
-    position: relative;
-    z-index: 1;
-}
-
-footer p {
-    margin: 0;
-    font-size: 8px;
-    font-weight:300;
-    letter-spacing: 2px;
-    opacity: 0.25;
 }
 
 /* Estilos para las flechas del carrusel */
@@ -509,26 +492,3 @@ footer p {
         width: 90%;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
