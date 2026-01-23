@@ -78,7 +78,7 @@
 
 /* Responsive */
 @media (max-width: 768px) {
-    #contenido-blanko {
+    #contenido-blog {
         flex-direction: column;
         padding: 40px 20px;
     }
