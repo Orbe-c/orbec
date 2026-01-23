@@ -404,6 +404,11 @@ header a:hover::after {
     letter-spacing: 3px;
     margin-bottom: 25px;
 }
+.contacto-info {
+    font-size: 13px;
+    opacity: 0.6;
+    letter-spacing: 1px;
+}
 
 footer {
     background: transparent;
@@ -415,10 +420,10 @@ footer {
 
 footer p {
     margin: 0;
-    font-size: 11px;
+    font-size: 8px;
     font-weight:300;
-    letter-spacing: 1.5px;
-    opacity: 0.35;
+    letter-spacing: 2px;
+    opacity: 0.25;
 }
 
 /* Estilos para las flechas del carrusel */
@@ -498,6 +503,7 @@ footer p {
         width: 90%;
     }
 }
+
 
 
 
