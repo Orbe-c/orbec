@@ -1,3 +1,6 @@
+/* ESTILOS ESPECÍFICOS PARA BLOG */
+
+/* Contenido principal del blog */
 #contenido-blanko {
     background-color: var(--blanco);
     padding: 60px 40px;
@@ -34,7 +37,6 @@
 
 /* Título fotos del mes */
 #titulo-fotos {
-    background-color: var(--blanco);
     text-align: center;
     font-size: 3em;
     padding: 40px 20px 20px;
@@ -46,7 +48,6 @@
 
 /* Mural de fotos */
 #mural {
-    background-color: var(--blanco);
     padding: 40px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -71,8 +72,8 @@
 
 /* Espacio antes de redes sociales */
 #mural + #redes-sociales {
-    background: linear-gradient(180deg, var(--blanco) 0%, var(--negro) 100%);
     padding-top: 60px;
+    background: linear-gradient(180deg, var(--blanco) 0%, var(--negro) 100%);
 }
 
 /* Responsive */
