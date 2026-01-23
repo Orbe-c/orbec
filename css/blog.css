@@ -97,6 +97,7 @@
 
     #titulo-fotos {
         font-size: 2em;
+        color: var(--blanco);
     }
 
     #mural {
