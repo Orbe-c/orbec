@@ -333,13 +333,13 @@ header a:hover::after {
     text-align: center;
     color: #EFECE3;
     position: relative;
-    display: flex;
+    display: block;
     flex-direction: column;
     justify-content: flex-start;
 }
 #contacto footer {
     margin-top: auto;
-    padding-top: 50px;
+    padding-top: 40px;
 }
 #contacto footer p {
     font-size: 11px;
@@ -486,6 +486,7 @@ footer p {
         width: 90%;
     }
 }
+
 
 
 
