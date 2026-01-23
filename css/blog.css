@@ -1,98 +1,110 @@
-/* Contenedor blanco del blog */
-#contenido-blanko {
-    background-color: #EFECE3;
-    color: #302F2B;
-    padding: 40px 20px;
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-    box-sizing: border-box;
-    gap: 40px;
+/* ESTILOS ESPECÍFICOS PARA BLOG */
+
+/* Header del blog (si es diferente) */
+#contenido {
+    margin-top: 20px;
 }
 
-/* Texto del blog */
+/* Contenido blanco */
+#contenido-blanko {
+    background-color: var(--blanco);
+    padding: 60px 40px;
+    display: flex;
+    gap: 50px;
+    align-items: flex-start;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
 #texto {
-    width: 50%;
-    box-sizing: border-box;
-    text-align: center;
+    flex: 2;
+    color: var(--negro);
 }
 
 #texto p {
-    line-height: 1.8;
-    font-size: 1.1em;
-    margin-bottom: 20px;
+    font-size: 18px;
+    line-height: 1.9;
+    margin-bottom: 25px;
     text-align: justify;
 }
 
-/* Imagen del blog */
 #imagen {
-    width: 50%;
-    box-sizing: border-box;
-    text-align: center;
+    flex: 1;
+    position: sticky;
+    top: 30px;
 }
 
 #imagen img {
-    width: 50%;
-    height: auto;
-    border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
-/* Título de fotos del mes */
+/* Título fotos del mes */
 #titulo-fotos {
+    background-color: var(--blanco);
     text-align: center;
-    color: #EFECE3;
-    font-size: 2em;
-    margin: 40px 0 20px;
-    letter-spacing: 2px;
+    font-size: 3em;
+    padding: 40px 20px 20px;
+    margin: 0;
+    color: var(--negro);
+    letter-spacing: 4px;
+    font-weight: 700;
 }
 
 /* Mural de fotos */
 #mural {
-    background-color: #EFECE3;
-    padding: 40px 20px;
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    background-color: var(--blanco);
+    padding: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 #mural img {
-    width: 30%;
-    margin-bottom: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 #mural img:hover {
-    transform: scale(1.05);
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
 }
 
 /* Responsive */
-@media (max-width: 767px) {
+@media (max-width: 768px) {
     #contenido-blanko {
         flex-direction: column;
-        align-items: center;
+        padding: 40px 20px;
+    }
+
+    #imagen {
+        position: static;
+        order: -1;
+    }
+
+    #texto p {
+        font-size: 16px;
+        text-align: left;
+    }
+
+    #titulo-fotos {
+        font-size: 2em;
+    }
+
+    #mural {
+        grid-template-columns: 1fr;
+        padding: 20px;
         gap: 20px;
     }
-    
-    #texto, #imagen {
-        width: 100%;
-    }
-    
-    #imagen img {
-        width: 80%;
-    }
-    
-    #mural img {
-        width: 45%;
-    }
-}
 
-@media (max-width: 480px) {
     #mural img {
-        width: 100%;
+        height: 250px;
     }
 }
