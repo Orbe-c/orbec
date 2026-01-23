@@ -344,7 +344,7 @@ header a:hover::after {
 
 #contacto {
     background-color: var(--negro);
-    background-size: 300px; 
+    background-size: 200px; 
     background-position: center;
     background-repeat: repeat;
     padding: 40px 20px 30px;
@@ -492,3 +492,4 @@ header a:hover::after {
         width: 90%;
     }
 }
+
