@@ -89,11 +89,7 @@ header h1 {
     margin: 0;
     font-size: 2em;
     letter-spacing: 3px;
-    background: linear-gradient(135deg, var(--blanco) 0%, var(--gris) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
+    color: var--(blanco);
 
 header div {
     margin-top: 10px;
@@ -473,5 +469,6 @@ header a:hover::after {
         width: 90%;
     }
 }
+
 
 
