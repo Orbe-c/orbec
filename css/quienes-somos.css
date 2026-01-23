@@ -13,6 +13,7 @@
     margin-bottom: 50px;
     letter-spacing: 4px;
     font-weight: 700;
+    color: var(--negro);
 }
 
 /* Sección 1: Texto + Imagen */
@@ -86,7 +87,7 @@
     margin-top: 15px;
     font-size: 14px;
     font-style: italic;
-    color: var(--gris-claro);
+    color: var(--blanco);
 }
 
 #seccion3 .texto {
@@ -105,6 +106,21 @@
     font-size: 18px;
     line-height: 1.8;
     text-align: justify;
+}
+
+/* Footer dentro del contenido */
+footer {
+    background: linear-gradient(135deg, #333333 0%, #1a1a1a 100%);
+    padding: 25px;
+    text-align: center;
+    margin-top: 0;
+}
+
+footer p {
+    margin: 0;
+    font-size: 14px;
+    letter-spacing: 1px;
+    color: var(--blanco);
 }
 
 /* Responsive */
@@ -139,5 +155,10 @@
 
     #seccion3 .texto h2 {
         text-align: center;
+    }
+
+    #seccion1 img,
+    #seccion3 img {
+        max-width: 100%;
     }
 }
