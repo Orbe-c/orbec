@@ -30,7 +30,7 @@ body {
 
 /* Estilo secciones */
 header a.section-link {
-    color: #ffffff;
+    color: var(--blanco);
     margin: 0 20px;
     font-size: 18px;
     text-decoration: none;
@@ -470,6 +470,7 @@ header a:hover::after {
         width: 90%;
     }
 }
+
 
 
 
