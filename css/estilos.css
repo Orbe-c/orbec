@@ -338,7 +338,7 @@ header a:hover::after {
 }
 
 #contacto {
-    background-image: url('../RecursosOrbec/Patron/PatronMarca1.png');
+    background-color:#EFECE3;
     background-size: 300px; 
     background-position: center;
     background-repeat: repeat;
@@ -498,6 +498,7 @@ footer p {
         width: 90%;
     }
 }
+
 
 
 
