@@ -71,21 +71,19 @@ $(document).ready(function () {
     });
 
     // Pausar videos al cambiar de slide
-    carrusel.on('beforeChange', function (event, slick, currentSlide, nextSlide) {
-        // Remover iframes de todos los slides
-        $('.video-wrapper').each(function() {
-            const wrapper = $(this);
-            if (wrapper.hasClass('playing')) {
-                wrapper.find('iframe').remove();
-                wrapper.removeClass('playing');
-            }
-        });
-        
-        // Reanudar autoplay
-        setTimeout(() => {
-            carrusel.slick('slickPlay');
-        }, 500);
+carrusel.on('beforeChange', function () {
+
+    $('.video-wrapper').each(function () {
+        const wrapper = $(this);
+        if (wrapper.hasClass('playing')) {
+            wrapper.find('iframe').remove();
+            wrapper.removeClass('playing');
+        }
     });
+
+    carrusel.slick('slickPlay');
+});
+
 
     // Carrusel de servicios
     $('#carrete-servicios').slick({
@@ -157,6 +155,7 @@ document.getElementById('btn-volver-arriba').addEventListener('click', function(
         behavior: 'smooth'
     });
 });
+
 
 
 
