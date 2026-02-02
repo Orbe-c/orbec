@@ -140,5 +140,23 @@ window.addEventListener('scroll', function () {
     }
 });
 
+// Botón volver arriba
+window.addEventListener('scroll', function() {
+    const btnVolverArriba = document.getElementById('btn-volver-arriba');
+    
+    if (window.pageYOffset > 300) {
+        btnVolverArriba.classList.add('visible');
+    } else {
+        btnVolverArriba.classList.remove('visible');
+    }
+});
+
+document.getElementById('btn-volver-arriba').addEventListener('click', function() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
+
 
 
