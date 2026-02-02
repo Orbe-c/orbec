@@ -231,6 +231,10 @@ header a:hover::after {
     background-color: var(--blanco);
 }
 
+.slick-dots {
+  display: none !important;
+}
+
 /* Wrapper responsive para videos 16:9 */
 .video-wrapper {
     position: relative;
@@ -557,4 +561,5 @@ header a:hover::after {
 #btn-volver-arriba:hover i {
     color: var(--amarillo);
 }
+
 
