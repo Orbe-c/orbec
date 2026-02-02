@@ -425,6 +425,55 @@ header a:hover::after {
     right: 20px;
 }
 
+/* Estilos para thumbnails de video */
+.video-thumbnail {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.video-thumbnail:hover {
+    transform: scale(1.05);
+}
+
+.play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    background-color: rgba(245, 216, 37, 0.9);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.play-button:hover {
+    background-color: var(--amarillo);
+    transform: translate(-50%, -50%) scale(1.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.play-button i {
+    color: var(--negro);
+    font-size: 32px;
+    margin-left: 5px;
+}
+
+.video-wrapper.playing .video-thumbnail,
+.video-wrapper.playing .play-button {
+    display: none;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     header h1 {
@@ -470,6 +519,7 @@ header a:hover::after {
         width: 90%;
     }
 }
+
 
 
 
