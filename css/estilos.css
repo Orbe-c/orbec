@@ -520,9 +520,41 @@ header a:hover::after {
     }
 }
 
+/* Botón volver arriba */
+#btn-volver-arriba {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background-color: var(--amarillo);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
 
+#btn-volver-arriba.visible {
+    opacity: 1;
+    visibility: visible;
+}
 
+#btn-volver-arriba:hover {
+    background-color: var(--negro);
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
 
+#btn-volver-arriba i {
+    color: var(--negro);
+    font-size: 20px;
+}
 
-
+#btn-volver-arriba:hover i {
+    color: var(--amarillo);
+}
 
