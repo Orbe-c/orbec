@@ -562,4 +562,14 @@ header a:hover::after {
     color: var(--amarillo);
 }
 
+/* Permitir interacción real con el iframe cuando el video está activo */
+.video-wrapper.playing {
+    pointer-events: none;
+}
+
+.video-wrapper.playing iframe {
+    pointer-events: auto;
+}
+
+
 
