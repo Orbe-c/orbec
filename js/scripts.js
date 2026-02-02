@@ -7,60 +7,33 @@ window.addEventListener('load', function () {
     }, 500);
 });
 
+//reproduccion carrusel youtube:
 // Variables para los reproductores de YouTube
-var players = [];
+var players = {};
 var carrusel;
-var isYouTubeReady = false;
 
-// Esta función se llama automáticamente cuando la API de YouTube está lista
-function onYouTubeIframeAPIReady() {
-    $('iframe[id^="player-"]').each(function (index) {
-        var iframeID = $(this).attr('id');
-        players[index] = new YT.Player(iframeID, {
-            events: {
-                onStateChange: onPlayerStateChange,
-                onReady: function() {
-                    isYouTubeReady = true;
-                    console.log('Player ' + index + ' listo');
-                }
-            }
-        });
-    });
-}
-
-// Función que detecta cambios en el estado del video
-function onPlayerStateChange(event) {
-    if (event.data === YT.PlayerState.PLAYING) {
-        carrusel.slick('slickPause');
-    }
-    if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
-        carrusel.slick('slickPlay');
-    }
-}
-
-// Cuando el DOM está listo
 $(document).ready(function () {
 
     // Cambio de logo al hacer click
-const logos = [
-    "imagenes/logo.png",
-    "RecursosOrbec/Logos/Logo orbe-12.png"
-];
+    const logos = [
+        "imagenes/logo.png",
+        "RecursosOrbec/Logos/Logo orbe-12.png"
+    ];
 
-let currentLogo = 0;
-const logoElement = document.getElementById("logo");
+    let currentLogo = 0;
+    const logoElement = document.getElementById("logo");
 
-if (logoElement) {
-    logoElement.addEventListener("click", () => {
-        logoElement.style.opacity = 0;
+    if (logoElement) {
+        logoElement.addEventListener("click", () => {
+            logoElement.style.opacity = 0;
 
-        setTimeout(() => {
-            currentLogo = (currentLogo + 1) % logos.length;
-            logoElement.src = logos[currentLogo];
-            logoElement.style.opacity = 1;
-        }, 150);
-    });
-}
+            setTimeout(() => {
+                currentLogo = (currentLogo + 1) % logos.length;
+                logoElement.src = logos[currentLogo];
+                logoElement.style.opacity = 1;
+            }, 150);
+        });
+    }
 
     // Carrusel de proyectos (videos)
     carrusel = $('#carrete').slick({
@@ -75,16 +48,43 @@ if (logoElement) {
         nextArrow: '<div class="carousel-next">&#10095;</div>'
     });
 
-    // Pausar el video cuando cambia el slide
-    carrusel.on('beforeChange', function (event, slick, currentSlide) {
-        if (isYouTubeReady && players[currentSlide]) {
-            try {
-                players[currentSlide].pauseVideo();
-                console.log('Video pausado');
-            } catch(e) {
-                console.log('Error al pausar');
-            }
+    // Cargar video al hacer clic en thumbnail
+    $('.video-wrapper').on('click', function() {
+        const wrapper = $(this);
+        const videoId = wrapper.data('video-id');
+        
+        if (!wrapper.hasClass('playing')) {
+            // Crear iframe
+            const iframe = $('<iframe>', {
+                src: `https://www.youtube.com/embed/${videoId}?autoplay=1&enablejsapi=1`,
+                frameborder: 0,
+                allowfullscreen: true,
+                allow: 'autoplay'
+            });
+            
+            wrapper.addClass('playing');
+            wrapper.append(iframe);
+            
+            // Pausar autoplay del carrusel
+            carrusel.slick('slickPause');
         }
+    });
+
+    // Pausar videos al cambiar de slide
+    carrusel.on('beforeChange', function (event, slick, currentSlide, nextSlide) {
+        // Remover iframes de todos los slides
+        $('.video-wrapper').each(function() {
+            const wrapper = $(this);
+            if (wrapper.hasClass('playing')) {
+                wrapper.find('iframe').remove();
+                wrapper.removeClass('playing');
+            }
+        });
+        
+        // Reanudar autoplay
+        setTimeout(() => {
+            carrusel.slick('slickPlay');
+        }, 500);
     });
 
     // Carrusel de servicios
