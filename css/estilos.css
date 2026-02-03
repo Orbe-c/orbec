@@ -177,7 +177,7 @@ header a:hover::after {
 #nuestros-servicios {
     text-align: center;
     margin-top: 0;
-    font-size: 32px;
+    font-size: 28px;
     color: var(--negro);
     background-color: var(--blanco);
     padding: 40px 0 30px;
@@ -379,9 +379,9 @@ header a:hover::after {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 70px;
-    height: 70px;
-    background-color: rgba(245, 216, 37, 0.9);
+    width: 58px;
+    height: 58px;
+    background-color: var(--blanco);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -391,12 +391,13 @@ header a:hover::after {
     transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
     color: var(--negro);
-    font-size: 28px;
+    font-size: 22px;
 }
 
 .carousel-prev:hover,
 .carousel-next:hover {
-    background-color: var(--amarillo);
+    background-color: var(--negro);
+    color: var(--blanco);
     transform: translateY(-50%) scale(1.1);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
 }
@@ -433,7 +434,7 @@ header a:hover::after {
     transform: translate(-50%, -50%);
     width: 80px;
     height: 80px;
-    background-color: rgba(245, 216, 37, 0.9);
+    background-color: var(--blanco);
     border: none;
     border-radius: 50%;
     cursor: pointer;
@@ -443,7 +444,7 @@ header a:hover::after {
 }
 
 .play-button:hover {
-    background-color: var(--amarillo);
+    background-color: var(--negro);
     transform: translate(-50%, -50%) scale(1.1);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
 }
@@ -453,6 +454,9 @@ header a:hover::after {
     font-size: 32px;
     margin-left: 5px;
 }
+.play-button:hover i {
+    color: var(--blanco);
+}
 
 .video-wrapper.playing .video-thumbnail,
 .video-wrapper.playing .play-button {
@@ -461,6 +465,10 @@ header a:hover::after {
 
 /* Responsive */
 @media (max-width: 768px) {
+    #nuestros-proyectos,
+#nuestros-servicios {
+    font-size: 22px;
+}
     header h1 {
         font-size: 1.2em;
     }
@@ -554,6 +562,7 @@ header a:hover::after {
 .video-wrapper.playing iframe {
     pointer-events: auto;
 }
+
 
 
 
