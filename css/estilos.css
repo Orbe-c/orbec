@@ -469,12 +469,6 @@ header a:hover::after {
         padding: 30px 10px;
     }
 
-    #carrete-servicios,
-    #carrete-servicios .slick-slide,
-    #carrete-servicios img {
-        height: 100vh;
-    }
-
     .servicio-texto {
         font-size: 32px;
     }
@@ -539,6 +533,7 @@ header a:hover::after {
 .video-wrapper.playing iframe {
     pointer-events: auto;
 }
+
 
 
 
