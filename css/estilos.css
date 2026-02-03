@@ -23,20 +23,11 @@ header a,
 body {
     background-color: var(--blanco);
     color: var(--blanco);
-    font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
 }
 
 /* Estilo secciones */
-header a.section-link {
-    color: var(--blanco);
-    margin: 0 20px;
-    font-size: 18px;
-    text-decoration: none;
-    font-family: 'Prompt', sans-serif;
-}
-
 header {
     background-color: var(--negro);
     padding: 30px 20px;
@@ -227,10 +218,6 @@ header a:hover::after {
     background-color: var(--blanco);
 }
 
-.slick-slide {
-    background-color: var(--blanco);
-}
-
 .slick-dots {
   display: none !important;
 }
@@ -240,7 +227,6 @@ header a:hover::after {
     position: relative;
     width: 100%;
     padding-bottom: 56.25%;
-    background-color: var(--blanco);
 }
 
 /* Videos en formato 16:9 correcto */
@@ -346,16 +332,10 @@ header a:hover::after {
 
 #contacto {
     background-color: var(--negro);
-    background-size: 200px; 
-    background-position: center;
-    background-repeat: repeat;
     padding: 40px 20px 30px;
-    min-height:auto;
     text-align: center;
     color: var(--blanco);
     position: relative;
-    display: block;
-
 }
 #contacto::before {
     content: '';
@@ -390,11 +370,6 @@ header a:hover::after {
     font-weight: bold;
     letter-spacing: 3px;
     margin-bottom: 15px;
-}
-.contacto-info {
-    font-size: 13px;
-    opacity: 0.6;
-    letter-spacing: 1px;
 }
 
 /* Estilos para las flechas del carrusel */
@@ -512,12 +487,6 @@ header a:hover::after {
 }
 
 @media (max-width: 480px) {
-    #carrete-servicios,
-    #carrete-servicios .slick-slide,
-    #carrete-servicios img {
-        height: 100vh;
-    }
-
     .servicio-texto {
         font-size: 26px;
         width: 90%;
@@ -570,6 +539,7 @@ header a:hover::after {
 .video-wrapper.playing iframe {
     pointer-events: auto;
 }
+
 
 
 
