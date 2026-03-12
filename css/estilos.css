@@ -654,10 +654,11 @@ header a:hover::after {
 }
 
 .logo-texto {
-    width: 30px;
+    width: 10px;
     display: block;
     margin: 10px auto 0;
 }
+
 
 
 
