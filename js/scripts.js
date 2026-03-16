@@ -173,9 +173,14 @@ function mostrarContenido(seccion, btn) {
     if (seccion === 'redes') {
         if (window.tiktokEmbed) {
             window.tiktokEmbed.reload();
+        } else {
+            const script = document.createElement('script');
+            script.src = "https://www.tiktok.com/embed.js";
+            document.body.appendChild(script);
         }
     }
 }
+
 
 
 
