@@ -157,29 +157,29 @@ document.getElementById('btn-volver-arriba').addEventListener('click', function(
         behavior: 'smooth'
     });
 });
-function mostrarContenido(seccion, btn) {
+function mostrarContenido(id, boton){
 
-    document.querySelectorAll('.contenido-trabajo').forEach(el => {
-        el.classList.remove('visible');
-    });
+document.querySelectorAll(".contenido-trabajo").forEach(seccion=>{
+seccion.classList.remove("visible")
+})
 
-    document.querySelectorAll('.filtro-trabajo button').forEach(b => {
-        b.classList.remove('activo');
-    });
+document.getElementById(id).classList.add("visible")
 
-    document.getElementById(seccion).classList.add('visible');
-    btn.classList.add('activo');
+document.querySelectorAll(".filtro-trabajo button").forEach(btn=>{
+btn.classList.remove("activo")
+})
 
-    if (seccion === 'redes') {
-        if (window.tiktokEmbed) {
-            window.tiktokEmbed.reload();
-        } else {
-            const script = document.createElement('script');
-            script.src = "https://www.tiktok.com/embed.js";
-            document.body.appendChild(script);
-        }
-    }
+boton.classList.add("activo")
+
+// recargar embeds de TikTok
+if(id === "redes"){
+if(window.tiktokEmbed){
+window.tiktokEmbed.load()
 }
+}
+
+}
+
 
 
 
