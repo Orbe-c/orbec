@@ -87,32 +87,6 @@ carrusel.on('beforeChange', function () {
 });
 
 
-    function mostrarContenido(seccion) {
-  // Ocultar todo
-  document.querySelectorAll('.contenido-trabajo').forEach(function(el) {
-    el.classList.remove('visible');
-  });
-
-  // Quitar activo de botones
-  document.querySelectorAll('.filtro-trabajo button').forEach(function(btn) {
-    btn.classList.remove('activo');
-  });
-
-  // Mostrar sección seleccionada
-  document.getElementById(seccion).classList.add('visible');
-
-  // Marcar botón activo
-  event.currentTarget.classList.add('activo');
-
-  // Si es TikTok, reinicializar embeds
-  if (seccion === 'redes') {
-    var script = document.createElement('script');
-    script.src = 'https://www.tiktok.com/embed.js';
-    document.body.appendChild(script);
-  }
-}
-    
-
     // Carrusel de servicios
     $('#carrete-servicios').slick({
         infinite: true,
@@ -183,7 +157,31 @@ document.getElementById('btn-volver-arriba').addEventListener('click', function(
         behavior: 'smooth'
     });
 });
+function mostrarContenido(seccion) {
+  // Ocultar todo
+  document.querySelectorAll('.contenido-trabajo').forEach(function(el) {
+    el.classList.remove('visible');
+  });
 
+  // Quitar activo de botones
+  document.querySelectorAll('.filtro-trabajo button').forEach(function(btn) {
+    btn.classList.remove('activo');
+  });
+
+  // Mostrar sección seleccionada
+  document.getElementById(seccion).classList.add('visible');
+
+  // Marcar botón activo
+  event.currentTarget.classList.add('activo');
+
+  // Si es TikTok, reinicializar embeds
+  if (seccion === 'redes') {
+    var script = document.createElement('script');
+    script.src = 'https://www.tiktok.com/embed.js';
+    document.body.appendChild(script);
+  }
+}
+    
 
 
 
