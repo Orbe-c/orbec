@@ -373,9 +373,6 @@ header a:hover::after {
     margin-bottom: 15px;
 }
 
-#redes {
-    display: none;
-}
 
 #redes.visible {
     display: block;
