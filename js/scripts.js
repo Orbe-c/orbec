@@ -157,29 +157,16 @@ document.getElementById('btn-volver-arriba').addEventListener('click', function(
         behavior: 'smooth'
     });
 });
-function mostrarContenido(seccion) {
-  // Ocultar todo
-  document.querySelectorAll('.contenido-trabajo').forEach(function(el) {
-    el.classList.remove('visible');
-  });
-
-  // Quitar activo de botones
-  document.querySelectorAll('.filtro-trabajo button').forEach(function(btn) {
-    btn.classList.remove('activo');
-  });
-
-  // Mostrar sección seleccionada
-  document.getElementById(seccion).classList.add('visible');
-
-  // Marcar botón activo
-  event.currentTarget.classList.add('activo');
-
-  // Si es TikTok, reinicializar embeds
-  if (seccion === 'redes') {
-    var script = document.createElement('script');
-    script.src = 'https://www.tiktok.com/embed.js';
-    document.body.appendChild(script);
-  }
+function mostrarContenido(seccion, btn) {
+    document.querySelectorAll('.contenido-trabajo').forEach(el => el.classList.remove('visible'));
+    document.querySelectorAll('.filtro-trabajo button').forEach(b => b.classList.remove('activo'));
+    document.getElementById(seccion).classList.add('visible');
+    btn.classList.add('activo');
+    if (seccion === 'redes') {
+        var s = document.createElement('script');
+        s.src = 'https://www.tiktok.com/embed.js';
+        document.body.appendChild(s);
+    }
 }
     
 
