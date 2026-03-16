@@ -654,7 +654,7 @@ header a:hover::after {
 }
 
 .logo-texto {
-    width: 80px;  
+    width: 120px;  
     height: auto;
     display: block;
     margin: 10px auto 0;
