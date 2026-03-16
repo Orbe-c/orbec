@@ -373,6 +373,15 @@ header a:hover::after {
     margin-bottom: 15px;
 }
 
+#redes {
+    display: none;
+}
+
+#redes.visible {
+    display: block;
+}
+
+
 /* Estilos para las flechas del carrusel */
 .carousel-prev,
 .carousel-next {
