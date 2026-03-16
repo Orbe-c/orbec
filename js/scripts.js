@@ -34,6 +34,7 @@ $(document).ready(function () {
             }, 150);
         });
     }
+    
 
     // Carrusel de proyectos (videos)
     carrusel = $('#carrete').slick({
@@ -47,6 +48,7 @@ $(document).ready(function () {
         prevArrow: '<div class="carousel-prev">&#10094;</div>',
         nextArrow: '<div class="carousel-next">&#10095;</div>'
     });
+    
 
     // Cargar video al hacer clic en thumbnail
     $('.video-wrapper').on('click', function() {
@@ -84,6 +86,32 @@ carrusel.on('beforeChange', function () {
     carrusel.slick('slickPlay');
 });
 
+
+    function mostrarContenido(seccion) {
+  // Ocultar todo
+  document.querySelectorAll('.contenido-trabajo').forEach(function(el) {
+    el.classList.remove('visible');
+  });
+
+  // Quitar activo de botones
+  document.querySelectorAll('.filtro-trabajo button').forEach(function(btn) {
+    btn.classList.remove('activo');
+  });
+
+  // Mostrar sección seleccionada
+  document.getElementById(seccion).classList.add('visible');
+
+  // Marcar botón activo
+  event.currentTarget.classList.add('activo');
+
+  // Si es TikTok, reinicializar embeds
+  if (seccion === 'redes') {
+    var script = document.createElement('script');
+    script.src = 'https://www.tiktok.com/embed.js';
+    document.body.appendChild(script);
+  }
+}
+    
 
     // Carrusel de servicios
     $('#carrete-servicios').slick({
