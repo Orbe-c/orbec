@@ -158,17 +158,25 @@ document.getElementById('btn-volver-arriba').addEventListener('click', function(
     });
 });
 function mostrarContenido(seccion, btn) {
-    document.querySelectorAll('.contenido-trabajo').forEach(el => el.classList.remove('visible'));
-    document.querySelectorAll('.filtro-trabajo button').forEach(b => b.classList.remove('activo'));
+
+    document.querySelectorAll('.contenido-trabajo').forEach(el => {
+        el.classList.remove('visible');
+    });
+
+    document.querySelectorAll('.filtro-trabajo button').forEach(b => {
+        b.classList.remove('activo');
+    });
+
     document.getElementById(seccion).classList.add('visible');
     btn.classList.add('activo');
+
     if (seccion === 'redes') {
-        var s = document.createElement('script');
-        s.src = 'https://www.tiktok.com/embed.js';
-        document.body.appendChild(s);
+        if (window.tiktokEmbed) {
+            window.tiktokEmbed.reload();
+        }
     }
 }
-    
+
 
 
 
