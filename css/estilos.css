@@ -522,9 +522,15 @@ header a:hover::after {
 }
 
 /* TikTok feed con scroll libre */
-#redes {
-  background-color: var(--blanco);
-  padding: 0 20px 40px;
+#redes{
+display:none;
+flex-direction:column;
+align-items:center;
+gap:40px;
+}
+
+#redes.visible{
+display:flex;
 }
 
 .tiktok-feed {
