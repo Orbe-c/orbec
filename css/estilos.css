@@ -463,6 +463,89 @@ header a:hover::after {
     display: none;
 }
 
+/* ---- Botones filtro trabajo ---- */
+.filtro-trabajo {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  padding: 24px 0 28px;
+  background-color: var(--blanco);
+}
+
+.filtro-trabajo button {
+  background: transparent;
+  color: var(--negro);
+  border: 2px solid var(--negro);
+  padding: 11px 38px;
+  font-family: 'Prompt', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 0;
+  transition: background 0.25s ease, color 0.25s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.filtro-trabajo button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--negro);
+  transition: left 0.25s ease;
+  z-index: -1;
+}
+
+.filtro-trabajo button:hover {
+  color: var(--blanco);
+}
+
+.filtro-trabajo button:hover::before {
+  left: 0;
+}
+
+.filtro-trabajo button.activo {
+  background: var(--negro);
+  color: var(--blanco);
+}
+
+/* TikTok feed con scroll libre */
+#redes {
+  background-color: var(--blanco);
+  padding: 0 20px 40px;
+}
+
+.tiktok-feed {
+  max-width: 480px;
+  margin: 30px auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  overflow-y: auto;
+}
+
+/* Ocultar secciones inactivas */
+.contenido-trabajo {
+  display: none;
+  animation: fadeInWork 0.35s ease;
+}
+
+.contenido-trabajo.visible {
+  display: block;
+}
+
+@keyframes fadeInWork {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+
 /* Responsive */
 @media (max-width: 768px) {
     #nuestros-proyectos,
