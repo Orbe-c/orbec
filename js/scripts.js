@@ -88,18 +88,20 @@ carrusel.on('beforeChange', function () {
 
 
     // Carrusel de servicios
-    $('#carrete-servicios').slick({
-        infinite: true,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 5000,
-        dots: true,
-        arrows: true,
-        prevArrow: '<div class="carousel-prev">&#10094;</div>',
-        nextArrow: '<div class="carousel-next">&#10095;</div>',
-        appendDots: $('#nuestros-servicios')
-    });
+  $('#carrete-servicios').slick({
+  infinite: true,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  autoplay: true,
+  autoplaySpeed: 5000,
+  fade: true,           // ← transición más suave
+  cssEase: 'ease-in-out',
+  dots: false,
+  arrows: true,
+  prevArrow: '<div class="carousel-prev">&#10094;</div>',
+  nextArrow: '<div class="carousel-next">&#10095;</div>',
+  waitForAnimate: false
+});
 
     // Pausar el carrusel cuando la pestaña no está visible
     document.addEventListener('visibilitychange', function () {
