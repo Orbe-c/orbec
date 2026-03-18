@@ -179,6 +179,61 @@ function mostrarContenido(id, boton){
   }
 }
 
+// ---- Auto-scroll TikTok ----
+(function () {
+  const slides = document.querySelectorAll('.tiktok-slide');
+  const dots = document.querySelectorAll('.tiktok-dot');
+  let current = 0;
+  let timer = null;
 
+  function irA(index) {
+    // Oculta todas
+    slides.forEach((s, i) => {
+      s.style.transform = i < index
+        ? 'translateY(-100%)'
+        : i === index
+          ? 'translateY(0)'
+          : 'translateY(100%)';
+      s.style.zIndex = i === index ? 1 : 0;
+    });
+    dots.forEach(d => d.classList.remove('activo'));
+    if (dots[index]) dots[index].classList.add('activo');
+    current = index;
+  }
+
+  function siguiente() {
+    irA((current + 1) % slides.length);
+  }
+
+  function iniciar() {
+    irA(0);
+    timer = setInterval(siguiente, 6000);
+  }
+
+  function detener() {
+    clearInterval(timer);
+  }
+
+  // Inicia cuando se muestra la sección
+  const feedEl = document.querySelector('.tiktok-feed');
+  if (feedEl) {
+    feedEl.addEventListener('mouseenter', detener);
+    feedEl.addEventListener('mouseleave', () => {
+      timer = setInterval(siguiente, 6000);
+    });
+    // Arranca solo cuando el tab de redes es visible
+    const btnRedes = document.querySelector('[onclick*="redes"]');
+    if (btnRedes) {
+      btnRedes.addEventListener('click', () => {
+        detener();
+        iniciar();
+      });
+    }
+    // Por si ya está visible al cargar
+    if (document.getElementById('redes')?.classList.contains('visible')) {
+      iniciar();
+    }
+  }
+})();
 
 
