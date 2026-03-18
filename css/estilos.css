@@ -777,9 +777,9 @@ display:flex;
 
 #hero-frase p {
   font-family: 'Prompt', sans-serif;
-  font-size: 22px;
+  font-size: 10px;
   font-weight: 300;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--blanco);
   margin: 0;
