@@ -756,7 +756,6 @@ display:flex;
 .tiktok-feed blockquote {
     margin-bottom: 40px;
 }
-/* iframes */
 .tiktok-wrapper {
   width: 100%;
   max-width: 380px;
@@ -768,6 +767,54 @@ display:flex;
   height: 700px;
   border: none;
   border-radius: 12px;
+}
+/* ---- TikTok auto-scroll ---- */
+.tiktok-feed {
+  width: 100%;
+  max-width: 420px;
+  height: 720px;
+  margin: 30px auto 0;
+  overflow: hidden;
+  position: relative;
+  border-radius: 16px;
+}
+
+.tiktok-slide {
+  width: 100%;
+  height: 720px;
+  flex-shrink: 0;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.tiktok-slide iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 16px;
+}
+
+/* Dots indicadores */
+.tiktok-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px 0 30px;
+}
+
+.tiktok-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--gris);
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.tiktok-dot.activo {
+  background-color: var(--negro);
+  transform: scale(1.3);
 }
 #hero-frase {
   background-color: var(--negro);
