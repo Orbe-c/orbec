@@ -807,27 +807,88 @@ header a:hover::after {
     margin: 10px auto 0;
 }
 
-/* ---- TikTok dinámico ---- */
-.tiktok-feed {
+/* ---- TikTok carrusel vertical ---- */
+#redes {
+  display: none;
+}
+#redes.visible {
+  display: block;
+}
+
+#tiktok-carousel-wrapper {
   display: flex;
-  justify-content: center;
-  gap: 24px;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
   padding: 30px 20px 40px;
-  max-width: 1200px;
-  margin: 0 auto;
+}
+
+#tiktok-btn-up,
+#tiktok-btn-down {
+  background: transparent;
+  border: 2px solid var(--negro);
+  color: var(--negro);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+#tiktok-btn-up:hover,
+#tiktok-btn-down:hover {
+  background: var(--negro);
+  color: var(--blanco);
+}
+
+.tiktok-feed {
+  width: 280px;
+  height: 500px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
 }
 
 .tiktok-card {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.5s ease;
+}
+
+/* Estado inicial: abajo esperando */
+.tiktok-card.abajo {
+  transform: translateY(100%);
+  opacity: 0;
+}
+
+/* Visible */
+.tiktok-card.activo {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Ya pasó: arriba */
+.tiktok-card.arriba {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
+.tiktok-card a {
+  display: block;
+  width: 100%;
+  height: 100%;
   text-decoration: none;
-  flex: 0 0 auto;
 }
 
 .tiktok-thumb {
-  width: 220px;
-  height: 390px;
-  border-radius: 16px;
-  overflow: hidden;
+  width: 100%;
+  height: 100%;
   position: relative;
   background: var(--negro);
 }
@@ -855,10 +916,7 @@ header a:hover::after {
 .tiktok-card:hover .tiktok-overlay { opacity: 1; }
 .tiktok-card:hover .tiktok-thumb img { transform: scale(1.05); }
 
-.tiktok-overlay i {
-  font-size: 42px;
-  color: var(--blanco);
-}
+.tiktok-overlay i { font-size: 42px; color: var(--blanco); }
 
 .tiktok-overlay span {
   font-family: 'Prompt', sans-serif;
@@ -871,8 +929,7 @@ header a:hover::after {
 .tiktok-autor {
   position: absolute;
   bottom: 14px;
-  left: 0;
-  right: 0;
+  left: 0; right: 0;
   text-align: center;
   font-family: 'Prompt', sans-serif;
   font-size: 12px;
@@ -881,6 +938,9 @@ header a:hover::after {
   text-shadow: 0 1px 4px rgba(0,0,0,0.8);
 }
 
-@media (max-width: 768px) {
-  .tiktok-thumb { width: 160px; height: 285px; }
+#tiktok-counter {
+  font-family: 'Prompt', sans-serif;
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: var(--gris);
 }
