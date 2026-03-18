@@ -469,56 +469,49 @@ header a:hover::after {
     display: none;
 }
 
-/* ---- Botones filtro trabajo ---- */
+/* ---- Filtros de trabajo: estilo texto con línea animada ---- */
 .filtro-trabajo {
   display: flex;
   justify-content: center;
-  gap: 14px;
-  padding: 24px 0 28px;
+  gap: 40px;
+  padding: 20px 0 32px;
   background-color: var(--blanco);
 }
 
 .filtro-trabajo button {
   background: transparent;
   color: var(--negro);
-  border: 2px solid var(--negro);
-  padding: 11px 38px;
+  border: none;
+  padding: 4px 0;
   font-family: 'Prompt', sans-serif;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 600;
-  letter-spacing: 2.5px;
+  letter-spacing: 2px;
   text-transform: uppercase;
   cursor: pointer;
-  border-radius: 0;
-  transition: background 0.25s ease, color 0.25s ease;
   position: relative;
-  overflow: hidden;
-  z-index: 0;
 }
 
-.filtro-trabajo button::before {
+/* La línea debajo */
+.filtro-trabajo button::after {
   content: '';
   position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: var(--negro);
-  transition: left 0.25s ease;
-  z-index: -1;
-}
-
-.filtro-trabajo button:hover {
-  color: var(--blanco);
-}
-
-.filtro-trabajo button:hover::before {
+  bottom: -3px;
   left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--negro);
+  transition: width 0.3s ease;
 }
 
-.filtro-trabajo button.activo {
-  background: var(--negro);
-  color: var(--blanco);
+/* Hover: la línea se dibuja */
+.filtro-trabajo button:hover::after {
+  width: 100%;
+}
+
+/* Activo: línea completa siempre visible */
+.filtro-trabajo button.activo::after {
+  width: 100%;
 }
 
 /* TikTok feed con scroll libre */
