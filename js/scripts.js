@@ -151,31 +151,89 @@ async function cargarTikToks() {
   if (!feed) return;
 
   for (const video of tiktokVideos) {
+    let thumbnail = 'imagenes/logo.png';
+    let autor = video.url.split('@')[1].split('/')[0];
+
     try {
       const proxy = 'https://api.allorigins.win/get?url=';
       const apiUrl = `https://www.tiktok.com/oembed?url=${encodeURIComponent(video.url)}`;
       const res = await fetch(proxy + encodeURIComponent(apiUrl));
       const data = await res.json();
       const info = JSON.parse(data.contents);
+      thumbnail = info.thumbnail_url;
+      autor = info.author_name;
+    } catch (e) {
+      console.warn('Thumbnail no disponible para:', video.url);
+    }
 
-      const card = document.createElement('a');
-      card.className = 'tiktok-card';
-      card.href = video.url;
-      card.target = '_blank';
-      card.rel = 'noopener';
-      card.innerHTML = `
+    const card = document.createElement('div');
+    card.className = 'tiktok-card abajo';
+    card.innerHTML = `
+      <a href="${video.url}" target="_blank" rel="noopener">
         <div class="tiktok-thumb">
-          <img src="${info.thumbnail_url}" alt="${info.title || 'Video TikTok'}">
+          <img src="${thumbnail}" alt="Video TikTok"
+            onerror="this.src='imagenes/logo.png'">
           <div class="tiktok-overlay">
             <i class="fa-brands fa-tiktok"></i>
             <span>Ver en TikTok</span>
           </div>
-          <div class="tiktok-autor">@${info.author_name}</div>
+          <div class="tiktok-autor">@${autor}</div>
         </div>
-      `;
-      feed.appendChild(card);
-    } catch (e) {
-      console.warn('No se pudo cargar TikTok:', video.url);
-    }
+      </a>
+    `;
+    feed.appendChild(card);
   }
+
+  iniciarCarruselTikTok();
+}
+
+function iniciarCarruselTikTok() {
+  const cards = document.querySelectorAll('.tiktok-card');
+  if (!cards.length) return;
+
+  let current = 0;
+  let autoTimer = null;
+
+  const wrapper = document.getElementById('tiktok-carousel-wrapper');
+  const btnUp = document.getElementById('tiktok-btn-up');
+  const btnDown = document.getElementById('tiktok-btn-down');
+  const counter = document.getElementById('tiktok-counter');
+
+  function mostrar(index) {
+    cards.forEach((c, i) => {
+      c.classList.remove('activo', 'arriba', 'abajo');
+      if (i < index) c.classList.add('arriba');
+      else if (i === index) c.classList.add('activo');
+      else c.classList.add('abajo');
+    });
+    if (counter) counter.textContent = `${index + 1} / ${cards.length}`;
+    current = index;
+  }
+
+  function siguiente() {
+    mostrar((current + 1) % cards.length);
+  }
+
+  function anterior() {
+    mostrar((current - 1 + cards.length) % cards.length);
+  }
+
+  function iniciarAuto() {
+    autoTimer = setInterval(siguiente, 6000);
+  }
+
+  function pararAuto() {
+    clearInterval(autoTimer);
+  }
+
+  if (btnDown) btnDown.addEventListener('click', () => { pararAuto(); siguiente(); iniciarAuto(); });
+  if (btnUp) btnUp.addEventListener('click', () => { pararAuto(); anterior(); iniciarAuto(); });
+
+  if (wrapper) {
+    wrapper.addEventListener('mouseenter', pararAuto);
+    wrapper.addEventListener('mouseleave', iniciarAuto);
+  }
+
+  mostrar(0);
+  iniciarAuto();
 }
