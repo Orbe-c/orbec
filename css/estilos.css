@@ -748,73 +748,80 @@ display:flex;
     margin: 10px auto 0;
 }
 
+/* ---- TikTok dinámico ---- */
 .tiktok-feed {
-    max-width: 420px;
-    margin: 40px auto;
-}
-
-.tiktok-feed blockquote {
-    margin-bottom: 40px;
-}
-.tiktok-wrapper {
-  width: 100%;
-  max-width: 380px;
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  padding: 30px 20px 40px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
-.tiktok-wrapper iframe {
-  width: 100%;
-  height: 700px;
-  border: none;
-  border-radius: 12px;
+.tiktok-card {
+  text-decoration: none;
+  flex: 0 0 auto;
 }
-/* ---- TikTok auto-scroll ---- */
-.tiktok-feed {
-  width: 100%;
-  max-width: 420px;
-  height: 720px;
-  margin: 30px auto 0;
+
+.tiktok-thumb {
+  width: 220px;
+  height: 390px;
+  border-radius: 16px;
   overflow: hidden;
   position: relative;
-  border-radius: 16px;
+  background: var(--negro);
 }
 
-.tiktok-slide {
-  width: 100%;
-  height: 720px;
-  flex-shrink: 0;
-  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-.tiktok-slide iframe {
+.tiktok-thumb img {
   width: 100%;
   height: 100%;
-  border: none;
-  border-radius: 16px;
+  object-fit: cover;
+  transition: transform 0.4s ease;
 }
 
-/* Dots indicadores */
-.tiktok-dots {
+.tiktok-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  gap: 8px;
-  padding: 16px 0 30px;
+  gap: 10px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
-.tiktok-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background-color: var(--gris);
-  transition: background 0.3s ease, transform 0.3s ease;
+.tiktok-card:hover .tiktok-overlay { opacity: 1; }
+.tiktok-card:hover .tiktok-thumb img { transform: scale(1.05); }
+
+.tiktok-overlay i {
+  font-size: 42px;
+  color: var(--blanco);
 }
 
-.tiktok-dot.activo {
-  background-color: var(--negro);
-  transform: scale(1.3);
+.tiktok-overlay span {
+  font-family: 'Prompt', sans-serif;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--blanco);
 }
 
+.tiktok-autor {
+  position: absolute;
+  bottom: 14px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-family: 'Prompt', sans-serif;
+  font-size: 12px;
+  color: var(--blanco);
+  letter-spacing: 1px;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+}
 
+@media (max-width: 768px) {
+  .tiktok-thumb { width: 160px; height: 285px; }
+}
