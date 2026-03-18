@@ -41,7 +41,19 @@
 <button onclick="mostrarContenido('redes', this)">Micro metrajes</button>
 </div>            
 <div id="redes" class="contenido-trabajo">
-  <div class="tiktok-feed" id="tiktok-feed"></div>
+  <div id="tiktok-carousel-wrapper">
+    <button id="tiktok-btn-up" aria-label="Anterior">
+      <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <div class="tiktok-feed" id="tiktok-feed"></div>
+
+    <button id="tiktok-btn-down" aria-label="Siguiente">
+      <i class="fas fa-chevron-down"></i>
+    </button>
+
+    <div id="tiktok-counter">1 / 3</div>
+  </div>
 </div>
         <div id="metrajes" class="contenido-trabajo visible">
 <div id="carrete" class="carousel"> 
