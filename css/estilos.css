@@ -848,35 +848,36 @@ header a:hover::after {
 .tiktok-feed {
   width: 280px;
   height: 500px;
-  position: relative;
+  position: relative;  /* ← clave */
   overflow: hidden;
   border-radius: 16px;
 }
 
 .tiktok-card {
-  position: absolute;
+  position: absolute;  /* ← clave, apiladas una encima de otra */
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-              opacity 0.5s ease;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease;
 }
 
-/* Estado inicial: abajo esperando */
 .tiktok-card.abajo {
   transform: translateY(100%);
   opacity: 0;
+  pointer-events: none;
 }
 
-/* Visible */
 .tiktok-card.activo {
   transform: translateY(0);
   opacity: 1;
+  pointer-events: auto;
 }
 
-/* Ya pasó: arriba */
 .tiktok-card.arriba {
   transform: translateY(-100%);
   opacity: 0;
+  pointer-events: none;
 }
 
 .tiktok-card a {
@@ -891,6 +892,8 @@ header a:hover::after {
   height: 100%;
   position: relative;
   background: var(--negro);
+  border-radius: 16px;
+  overflow: hidden;
 }
 
 .tiktok-thumb img {
@@ -943,4 +946,11 @@ header a:hover::after {
   font-size: 12px;
   letter-spacing: 2px;
   color: var(--gris);
+}
+
+@media (max-width: 768px) {
+  .tiktok-feed {
+    width: 220px;
+    height: 390px;
+  }
 }
