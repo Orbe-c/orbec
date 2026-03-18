@@ -155,9 +155,9 @@ async function cargarTikToks() {
     let autor = video.url.split('@')[1].split('/')[0];
 
     try {
-      const apiUrl = `https://www.tiktok.com/oembed?url=${encodeURIComponent(video.url)}`;
-      const res = await fetch('https://corsproxy.io/?' + encodeURIComponent(apiUrl));
-      const info = await res.json();
+    const apiUrl = `https://www.tiktok.com/oembed?url=${encodeURIComponent(video.url)}`;
+const res = await fetch('https://api.codetabs.com/v1/proxy?quest=' + encodeURIComponent(apiUrl));
+const info = await res.json();
       thumbnail = info.thumbnail_url;
       autor = info.author_name;
     } catch (e) {
