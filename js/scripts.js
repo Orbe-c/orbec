@@ -238,4 +238,57 @@ function mostrarContenido(id, boton){
   }
 })();
 
+// ---- TikTok dinámico via oEmbed ----
+const tiktokVideos = [
+  { url: 'https://www.tiktok.com/@taqueria_andale/video/7571265003542695224' },
+  { url: 'https://www.tiktok.com/@ronilioo/video/7506991432322829574' },
+  { url: 'https://www.tiktok.com/@orbecfilms/video/7556403164396752184' },
+  { url: 'https://www.tiktok.com/@orbecfilms/video/7550498321232661816' }
+];
+
+async function cargarTikToks() {
+  const feed = document.getElementById('tiktok-feed');
+  if (!feed) return;
+
+  for (const video of tiktokVideos) {
+    try {
+      const proxy = 'https://api.allorigins.win/get?url=';
+      const apiUrl = `https://www.tiktok.com/oembed?url=${encodeURIComponent(video.url)}`;
+      const res = await fetch(proxy + encodeURIComponent(apiUrl));
+      const data = await res.json();
+      const info = JSON.parse(data.contents);
+
+      const card = document.createElement('a');
+      card.className = 'tiktok-card';
+      card.href = video.url;
+      card.target = '_blank';
+      card.rel = 'noopener';
+      card.innerHTML = `
+        <div class="tiktok-thumb">
+          <img src="${info.thumbnail_url}" alt="${info.title || 'Video TikTok'}">
+          <div class="tiktok-overlay">
+            <i class="fa-brands fa-tiktok"></i>
+            <span>Ver en TikTok</span>
+          </div>
+          <div class="tiktok-autor">@${info.author_name}</div>
+        </div>
+      `;
+      feed.appendChild(card);
+    } catch (e) {
+      console.warn('No se pudo cargar TikTok:', video.url);
+    }
+  }
+}
+
+// Carga cuando el usuario hace click en "Micro metrajes"
+const btnRedes = document.querySelector('[onclick*="redes"]');
+let tiktoksYaCargados = false;
+if (btnRedes) {
+  btnRedes.addEventListener('click', () => {
+    if (!tiktoksYaCargados) {
+      cargarTikToks();
+      tiktoksYaCargados = true;
+    }
+  });
+}
 
