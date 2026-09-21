@@ -219,7 +219,7 @@ header a:hover::after {
     position: relative;
 }
 
-.slick-dots {
+#carrete .slick-dots {
   display: none !important;
 }
 
@@ -942,4 +942,93 @@ header a:hover::after {
 
 @media (max-width: 480px) {
     .cliente-item { flex: 0 0 100%; }
+}
+/* ===== Indicadores del carrusel de servicios ===== */
+#carrete-servicios {
+    cursor: grab;
+}
+
+#carrete-servicios:active {
+    cursor: grabbing;
+}
+
+/* Sombra suave abajo para que las rayitas se vean sobre cualquier foto */
+#carrete-servicios::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 160px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
+    pointer-events: none;
+    z-index: 2;
+}
+
+#carrete-servicios .slick-dots {
+    display: flex !important;
+    justify-content: center;
+    gap: 12px;
+    position: absolute;
+    bottom: 40px;
+    left: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    z-index: 5;
+}
+
+#carrete-servicios .slick-dots li {
+    width: 60px;
+    height: 24px; /* área de toque más grande */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+#carrete-servicios .slick-dots li button {
+    position: relative;
+    width: 100%;
+    height: 3px;
+    padding: 0;
+    border: none;
+    border-radius: 2px;
+    background: rgba(239, 236, 227, 0.35);
+    cursor: pointer;
+    overflow: hidden;
+    font-size: 0;
+}
+
+#carrete-servicios .slick-dots li button::before {
+    display: none;
+}
+
+#carrete-servicios .slick-dots li button::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--blanco);
+    transform: scaleX(0);
+    transform-origin: left;
+}
+
+#carrete-servicios .slick-dots li.slick-active button::after {
+    animation: llenarBarra 5s linear forwards;
+}
+
+@keyframes llenarBarra {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+}
+
+@media (max-width: 480px) {
+    #carrete-servicios .slick-dots {
+        bottom: 30px;
+        gap: 8px;
+    }
+    #carrete-servicios .slick-dots li {
+        width: 40px;
+    }
 }
