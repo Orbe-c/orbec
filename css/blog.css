@@ -108,3 +108,34 @@
         height: 250px;
     }
 }
+/* Estilos del artículo */
+#texto h1 {
+    font-size: 2.2em;
+    margin: 0 0 10px;
+    color: var(--negro);
+    letter-spacing: 1px;
+}
+
+#texto .subtitulo {
+    font-style: italic;
+    color: var(--gris);
+    margin-bottom: 35px;
+}
+
+#texto blockquote {
+    border-left: 4px solid var(--negro);
+    margin: 30px 0;
+    padding: 10px 25px;
+    font-size: 18px;
+    font-style: italic;
+    line-height: 1.8;
+    color: var(--negro);
+}
+
+#texto blockquote cite {
+    display: block;
+    margin-top: 12px;
+    font-size: 14px;
+    font-style: normal;
+    color: var(--gris);
+}
