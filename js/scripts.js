@@ -127,7 +127,7 @@ document.getElementById('btn-volver-arriba').addEventListener('click', function 
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
-// ---- Filtros Metrajes / Micro metrajes ----
+// ---- Filtros Metrajes / Contenido vertical ----
 function mostrarContenido(id, boton) {
   document.querySelectorAll('.contenido-trabajo').forEach(s => s.classList.remove('visible'));
   document.getElementById(id).classList.add('visible');
@@ -172,9 +172,6 @@ function cargarTikToks() {
     `;
     feed.appendChild(card);
   });
-
-  iniciarCarruselTikTok();
-}
 
   iniciarCarruselTikTok();
 }
