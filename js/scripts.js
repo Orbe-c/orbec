@@ -140,7 +140,7 @@ function mostrarContenido(id, boton) {
   }
 }
 
-// ---- TikTok carrusel (miniaturas locales) ----
+// ---- TikTok carrusel (reproducción dentro de la web) ----
 const tiktokVideos = [
   { url: 'https://www.tiktok.com/@taqueria_andale/video/7571265003542695224', thumb: 'imagenes/tiktok/tt1.jpg', autor: 'taqueria_andale' },
   { url: 'https://www.tiktok.com/@ronilioo/video/7506991432322829574',        thumb: 'imagenes/tiktok/tt2.jpg', autor: 'ronilioo' },
@@ -155,25 +155,46 @@ function cargarTikToks() {
   if (!feed) return;
 
   tiktokVideos.forEach(function (video) {
+    const videoId = video.url.split('/video/')[1].split('?')[0];
+
     const card = document.createElement('div');
     card.className = 'tiktok-card abajo';
+    card.dataset.videoId = videoId;
     card.innerHTML = `
-      <a href="${video.url}" target="_blank" rel="noopener">
-        <div class="tiktok-thumb">
-          <img src="${video.thumb}" alt="Video de TikTok de @${video.autor}"
-            onerror="this.src='imagenes/logo.png'">
-          <div class="tiktok-overlay">
-            <i class="fa-brands fa-tiktok"></i>
-            <span>Ver en TikTok</span>
-          </div>
-          <div class="tiktok-autor">@${video.autor}</div>
-        </div>
-      </a>
+      <div class="tiktok-thumb">
+        <img src="${video.thumb}" alt="Video de TikTok de @${video.autor}"
+          onerror="this.src='imagenes/logo.png'">
+        <button class="tiktok-play" aria-label="Reproducir video">
+          <i class="fas fa-play"></i>
+        </button>
+        <div class="tiktok-autor">@${video.autor}</div>
+      </div>
     `;
+    card.addEventListener('click', function () { reproducirTikTok(card); });
     feed.appendChild(card);
   });
 
   iniciarCarruselTikTok();
+}
+
+function reproducirTikTok(card) {
+  if (card.classList.contains('reproduciendo')) return;
+
+  const iframe = document.createElement('iframe');
+  iframe.src = 'https://www.tiktok.com/embed/v2/' + card.dataset.videoId;
+  iframe.allow = 'autoplay; fullscreen; encrypted-media';
+  iframe.allowFullscreen = true;
+  iframe.setAttribute('scrolling', 'no');
+  iframe.title = 'Video de TikTok';
+
+  card.classList.add('reproduciendo');
+  card.appendChild(iframe);
+}
+
+function detenerTikTok(card) {
+  const iframe = card.querySelector('iframe');
+  if (iframe) iframe.remove();
+  card.classList.remove('reproduciendo');
 }
 
 function iniciarCarruselTikTok() {
@@ -194,6 +215,7 @@ function iniciarCarruselTikTok() {
       if (i < index) c.classList.add('arriba');
       else if (i === index) c.classList.add('activo');
       else c.classList.add('abajo');
+      if (i !== index) detenerTikTok(c);
     });
     if (counter) counter.textContent = `${index + 1} / ${cards.length}`;
     current = index;
@@ -207,8 +229,15 @@ function iniciarCarruselTikTok() {
     mostrar((current - 1 + cards.length) % cards.length);
   }
 
+  function hayVideoReproduciendo() {
+    return document.querySelector('.tiktok-card.reproduciendo') !== null;
+  }
+
   function iniciarAuto() {
-    autoTimer = setInterval(siguiente, 6000);
+    clearInterval(autoTimer);
+    autoTimer = setInterval(function () {
+      if (!hayVideoReproduciendo()) siguiente();
+    }, 6000);
   }
 
   function pararAuto() {
