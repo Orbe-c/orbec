@@ -1036,6 +1036,7 @@ header a:hover::after {
   border-radius: 16px;
   background: var(--negro);
 }
+
 /* Logos cuadrados (como Oil Works) para que no se vean más grandes que los demás */
 .cliente-item img.logo-cuadrado {
     width: 55%;
