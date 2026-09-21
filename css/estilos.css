@@ -1027,14 +1027,6 @@ header a:hover::after {
     }
 }
 /* ---- Reproductor TikTok embebido ---- */
-.tiktok-card {
-  cursor: pointer;
-}
-
-.tiktok-card.reproduciendo {
-  cursor: default;
-}
-
 .tiktok-card iframe {
   position: absolute;
   inset: 0;
@@ -1043,30 +1035,4 @@ header a:hover::after {
   border: 0;
   border-radius: 16px;
   background: var(--negro);
-}
-
-.tiktok-play {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 70px;
-  height: 70px;
-  background-color: var(--blanco);
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  z-index: 2;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease, background-color 0.3s ease;
-}
-
-.tiktok-play i {
-  color: var(--negro);
-  font-size: 26px;
-  margin-left: 4px;
-}
-
-.tiktok-card:hover .tiktok-play {
-  transform: translate(-50%, -50%) scale(1.1);
 }
