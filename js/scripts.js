@@ -74,11 +74,15 @@ $(document).ready(function () {
     autoplaySpeed: 5000,
     fade: true,
     cssEase: 'ease-in-out',
-    dots: false,
-    arrows: true,
-    prevArrow: '<div class="carousel-prev">&#10094;</div>',
-    nextArrow: '<div class="carousel-next">&#10095;</div>',
-    waitForAnimate: false
+    dots: true,
+    arrows: false,
+    pauseOnHover: false,
+    pauseOnFocus: false,
+    pauseOnDotsHover: false,
+    waitForAnimate: false,
+    customPaging: function (slider, i) {
+      return '<button type="button" aria-label="Ir al servicio ' + (i + 1) + '"></button>';
+    }
   });
 
   // Pausar cuando la pestaña no está visible
