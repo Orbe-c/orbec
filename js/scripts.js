@@ -136,51 +136,41 @@ function mostrarContenido(id, boton) {
   }
 }
 
-// ---- TikTok dinámico via oEmbed ----
+// ---- TikTok carrusel (miniaturas locales) ----
 const tiktokVideos = [
-  { url: 'https://www.tiktok.com/@taqueria_andale/video/7571265003542695224' },
-  { url: 'https://www.tiktok.com/@ronilioo/video/7506991432322829574' },
-  { url: 'https://www.tiktok.com/@orbecfilms/video/7556403164396752184' },
-  { url: 'https://www.tiktok.com/@orbecfilms/video/7550498321232661816' }
+  { url: 'https://www.tiktok.com/@taqueria_andale/video/7571265003542695224', thumb: 'imagenes/tiktok/tt1.jpg', autor: 'taqueria_andale' },
+  { url: 'https://www.tiktok.com/@ronilioo/video/7506991432322829574',        thumb: 'imagenes/tiktok/tt2.jpg', autor: 'ronilioo' },
+  { url: 'https://www.tiktok.com/@orbecfilms/video/7556403164396752184',      thumb: 'imagenes/tiktok/tt3.jpg', autor: 'orbecfilms' },
+  { url: 'https://www.tiktok.com/@orbecfilms/video/7550498321232661816',      thumb: 'imagenes/tiktok/tt4.jpg', autor: 'orbecfilms' }
 ];
 
 let tiktoksYaCargados = false;
 
-async function cargarTikToks() {
+function cargarTikToks() {
   const feed = document.getElementById('tiktok-feed');
   if (!feed) return;
 
-  for (const video of tiktokVideos) {
-    let thumbnail = 'imagenes/logo.png';
-    let autor = video.url.split('@')[1].split('/')[0];
-
-    try {
-    const apiUrl = `https://www.tiktok.com/oembed?url=${encodeURIComponent(video.url)}`;
-const res = await fetch('https://api.codetabs.com/v1/proxy?quest=' + encodeURIComponent(apiUrl));
-const info = await res.json();
-      thumbnail = info.thumbnail_url;
-      autor = info.author_name;
-    } catch (e) {
-      console.warn('Thumbnail no disponible para:', video.url);
-    }
-
+  tiktokVideos.forEach(function (video) {
     const card = document.createElement('div');
     card.className = 'tiktok-card abajo';
     card.innerHTML = `
       <a href="${video.url}" target="_blank" rel="noopener">
         <div class="tiktok-thumb">
-          <img src="${thumbnail}" alt="Video TikTok"
+          <img src="${video.thumb}" alt="Video de TikTok de @${video.autor}"
             onerror="this.src='imagenes/logo.png'">
           <div class="tiktok-overlay">
             <i class="fa-brands fa-tiktok"></i>
             <span>Ver en TikTok</span>
           </div>
-          <div class="tiktok-autor">@${autor}</div>
+          <div class="tiktok-autor">@${video.autor}</div>
         </div>
       </a>
     `;
     feed.appendChild(card);
-  }
+  });
+
+  iniciarCarruselTikTok();
+}
 
   iniciarCarruselTikTok();
 }
