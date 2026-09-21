@@ -761,8 +761,9 @@ header a:hover::after {
 }
 
 .tiktok-feed {
-  width: 280px;
-  height: 500px;
+  width: 100%;
+  max-width: 325px;
+  height: 575px;
   position: relative;  /* ← clave */
   overflow: hidden;
   border-radius: 16px;
@@ -861,13 +862,6 @@ header a:hover::after {
   font-size: 12px;
   letter-spacing: 2px;
   color: var(--gris);
-}
-
-@media (max-width: 768px) {
-  .tiktok-feed {
-    width: 220px;
-    height: 390px;
-  }
 }
 
 /* ===== CLIENTES ===== */
@@ -1031,4 +1025,48 @@ header a:hover::after {
     #carrete-servicios .slick-dots li {
         width: 40px;
     }
+}
+/* ---- Reproductor TikTok embebido ---- */
+.tiktok-card {
+  cursor: pointer;
+}
+
+.tiktok-card.reproduciendo {
+  cursor: default;
+}
+
+.tiktok-card iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 16px;
+  background: var(--negro);
+}
+
+.tiktok-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70px;
+  height: 70px;
+  background-color: var(--blanco);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 2;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.tiktok-play i {
+  color: var(--negro);
+  font-size: 26px;
+  margin-left: 4px;
+}
+
+.tiktok-card:hover .tiktok-play {
+  transform: translate(-50%, -50%) scale(1.1);
 }
