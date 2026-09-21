@@ -94,9 +94,8 @@
         text-align: left;
     }
 
-    #titulo-fotos {
+       #titulo-fotos {
         font-size: 2em;
-        color: var(--blanco);
     }
 
     #mural {
