@@ -145,9 +145,10 @@ const tiktokVideos = [
   'https://www.tiktok.com/@taqueria_andale/video/7571265003542695224',
   'https://www.tiktok.com/@ronilioo/video/7506991432322829574',
   'https://www.tiktok.com/@orbecfilms/video/7556403164396752184',
-  'https://www.tiktok.com/@orbecfilms/video/7550498321232661816'
+  'https://www.tiktok.com/@orbecfilms/video/7550498321232661816',
+  'https://www.tiktok.com/@oilworks.sv/video/7662478289864297746',
+  'https://www.tiktok.com/@oilworks.sv/video/7668365577592884488'
 ];
-
 let tiktoksYaCargados = false;
 
 function cargarTikToks() {
