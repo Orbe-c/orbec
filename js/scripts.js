@@ -1,9 +1,13 @@
 // ---- Preloader ----
-window.addEventListener('load', function () {
+// Se oculta cuando la página termina de cargar, o a los 2.5 s como máximo.
+function ocultarPreloader() {
   var preloader = document.getElementById('preloader');
+  if (!preloader || preloader.classList.contains('fade-out')) return;
   preloader.classList.add('fade-out');
   setTimeout(function () { preloader.style.display = 'none'; }, 500);
-});
+}
+window.addEventListener('load', ocultarPreloader);
+setTimeout(ocultarPreloader, 2500);
 
 var carrusel;
 
